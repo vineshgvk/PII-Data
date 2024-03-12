@@ -9,9 +9,10 @@ from transformers import AutoTokenizer
 from datasets import Dataset
 
 # Determine the absolute path of the project directory
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.getcwd()
 
-INPUT_DATA_PKL_PATH=os.path.join(PROJECT_DIR, 'data', 'processed','duplicate_removed.pkl')
+INPUT_DATA_PKL_PATH=os.path.join(PROJECT_DIR, 'data', 'processed','dup_removed.pkl')
 INPUT_LABELS_PKL_PATH = os.path.join(PROJECT_DIR, 'data', 'processed','label_encoder_data.pkl')
 OUTPUT_TOKEN_MAPPING_PKL_PATH = os.path.join(PROJECT_DIR, 'data', 'processed','tokenized_data.pkl')
 
@@ -99,6 +100,7 @@ def tokenize_data(input_data_pkl=INPUT_DATA_PKL_PATH, input_labels_pkl=INPUT_LAB
     
     return output_tokenmapping_pkl
 
+tokenize_data(input_data_pkl=INPUT_DATA_PKL_PATH, input_labels_pkl=INPUT_LABELS_PKL_PATH, model_path=MODEL_PATH, output_tokenmapping_pkl=OUTPUT_TOKEN_MAPPING_PKL_PATH, max_inference_length=MAX_INFERENCE_LENGTH)
 
 
 

@@ -9,8 +9,8 @@ import os
 # Get the current working directory
 PROJECT_DIR = os.getcwd()
 # pklPath is input to function. outPklPath is path after processing.
-pklPath = os.path.join(PROJECT_DIR, 'data.pkl')
-outPklPath = os.path.join(PROJECT_DIR, 'missing_values.pkl')
+pklPath = os.path.join(PROJECT_DIR,"data","processed",'data.pkl')
+outPklPath = os.path.join(PROJECT_DIR, "data","processed",'missing_values.pkl')
 
 def naHandler(inputPath=pklPath, outputPath=outPklPath):
     if os.path.exists(inputPath):
