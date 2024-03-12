@@ -32,15 +32,15 @@ The labels being the target feature which has different classes to predict,
 | STREET_ADDRESS | This holds the student’s address.|
 
 ## Downloading Dataset
-`downloadData.py` downloads the zipped source files including test from the source.
-`unzipFile.py` extracts the downloaded datasets (files are stored in .json).
+`downloadData.py` downloads the zipped source files including test from the source
+`unzipFile.py` extracts the downloaded datasets (files are stored in .json)
 
 ## Data Processing
-`loadData.py` loads json files for training after unzipping.
-`naHandler.py` checks for NULLs in the dataset and processes accordingly. loadData > naHandler (returns afterNA.pkl)
-`dupeRemoval.py` removes duplicate, if any, from the dataset. naHandler > dupeRemoval (returns afterDupeRemoval.pkl)
-`anomalyDetect.py` checks for inconsistencies and anomalies within the dataset (right data types, text length above threshold length, etc.)
-`tokenizer.py` Tokenize `full_text` column of the document through a nltk tokenizer (word and sentence) and stores it as nltkWordTokens.
+`loadData.py` loads json files for training after unzipping. <br />
+`naHandler.py` checks for NULLs in the dataset and processes accordingly. loadData > naHandler (returns afterNA.pkl) <br />
+`dupeRemoval.py` removes duplicate, if any, from the dataset. naHandler > dupeRemoval (returns afterDupeRemoval.pkl) <br />
+`anomalyDetect.py` checks for inconsistencies and anomalies within the dataset (right data types, text length above threshold length, etc.) <br />
+`tokenizer.py` Tokenize `full_text` column of the document through a nltk tokenizer (word and sentence) and stores it as nltkWordTokens <br />
 
 ## Explorator Analysis
-`exploreData.py` to explore and find patterns within the text data. Consumes `input train.json` file for processing.
+`exploreData.py` to explore and find patterns within the text data. Consumes `input train.json` file for processing <br />
