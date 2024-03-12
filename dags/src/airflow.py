@@ -58,7 +58,7 @@ remove_duplicates_task = PythonOperator(
     task_id='remove_duplicates_task',
     python_callable=dupeRemoval,
     op_kwargs={
-        'input_picle_path': '{{ ti.xcom_pull(task_ids="handle_missing_task") }}',
+        'input_picle_path': '{{ ti.xcom_pull(task_ids="handle_missing_values_task") }}',
     },
     dag=dag,
 )
