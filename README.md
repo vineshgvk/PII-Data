@@ -2,7 +2,10 @@
 In this data-driven age, the protection of Personally Identifiable Information (PII) has become critically important, especially when it’s 
 embedded in the extensive personal details often found in essays.  This project involves in building an end-to-end strategy to detect sensitive personal identifiers from student essays.
 
-## Data Source
+## Requirements
+<>
+
+## Data Pipeline
 Data is featured by The Learning Agency Lab in Kaggle.
 > The goal of this competition is to develop a model that detects personally identifiable information (PII) in student writing. Your efforts to automate the detection and removal of PII from educational data will lower the cost of releasing educational datasets. This will support learning science research and the development of educational tools. Reliable automated techniques could allow researchers and industry to tap into the potential that large public educational datasets offer to support the development of effective tools and interventions for supporting teachers and students.
 https://www.kaggle.com/competitions/pii-detection-removal-from-educational-data/data
@@ -28,3 +31,16 @@ The labels being the target feature which has different classes to predict,
 | URL_PERSONAL | A URL that might be used to identify a student.|
 | STREET_ADDRESS | This holds the student’s address.|
 
+## Downloading Dataset
+`downloadData.py` downloads the zipped source files including test from the source.
+`unzipFile.py` extracts the downloaded datasets (files are stored in .json).
+
+## Data Processing
+`loadData.py` loads json files for training after unzipping.
+`naHandler.py` checks for NULLs in the dataset and processes accordingly. loadData > naHandler (returns afterNA.pkl)
+`dupeRemoval.py` removes duplicate, if any, from the dataset. naHandler > dupeRemoval (returns afterDupeRemoval.pkl)
+`anomalyDetect.py` checks for inconsistencies and anomalies within the dataset (right data types, text length above threshold length, etc.)
+`tokenizer.py` Tokenize `full_text` column of the document through a nltk tokenizer (word and sentence) and stores it as nltkWordTokens.
+
+## Explorator Analysis
+`exploreData.py` to explore and find patterns within the text data. Consumes `input train.json` file for processing.
