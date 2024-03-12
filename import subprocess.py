@@ -1,7 +1,6 @@
 import subprocess
 import pandas as pd
 import os
-import logging
 import pickle
 
 def load_data_from_gcp_and_save_as_pkl(pickle_path):
