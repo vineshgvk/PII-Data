@@ -1,53 +1,54 @@
-"""
-A module for label encoding the target column.
-"""
-
 import os
-import pickle
+import json
 from itertools import chain
 
-
-
 # Determine the absolute path of the project directory
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.getcwd()
 
-INPUT_DATA_PKL_PATH=os.path.join(PROJECT_DIR, 'data', 'processed','duplicate_removed.pkl')
-OUTPUT_LABELS_PKL_PATH = os.path.join(PROJECT_DIR, 'data', 'processed','label_encoder_data.pkl')
-               
+INPUT_DATA_JSON_PATH = os.path.join(PROJECT_DIR, 'data', 'processed', 'resampled.json')
+OUTPUT_LABELS_JSON_PATH = os.path.join(PROJECT_DIR, 'data', 'processed', 'label_encoder_data.json')
 
-def load_and_transform_labels_from_pkl(input_pkl_path=INPUT_DATA_PKL_PATH, output_pickle_path=OUTPUT_LABELS_PKL_PATH):
+
+def load_and_transform_labels_from_json(input_json_path=INPUT_DATA_JSON_PATH, output_json_path=OUTPUT_LABELS_JSON_PATH):
     """
-    Load data from the input pickle file, compute label2id and id2label mappings,
-    and save them to the output pickle file.
+    Load data from the input JSON file, compute label2id and id2label mappings,
+    and save them to the output JSON file.
 
-    :param input_pkl_path: Path to the input pickle file.
-    :param output_pickle_path: Path to the output pickle file.
+    :param input_json_path: Path to the input JSON file.
+    :param output_json_path: Path to the output JSON file.
     """
     # Check if the input file exists
-    if not os.path.exists(input_pkl_path):
-        raise FileNotFoundError(f"No data found at the specified path: {input_pkl_path}")
-    
-    # Load data from input pickle file
-    with open(input_pkl_path, "rb") as file:
-        data = pickle.load(file)
-    
-    # Compute all_labels, label2id, and id2label
-    all_labels = sorted(list(set(chain(*[x["labels"] for x in data]))))
-    label2id = {l: i for i, l in enumerate(all_labels)}
-    id2label = {v: k for k, v in label2id.items()}
-    
+    if not os.path.exists(input_json_path):
+        raise FileNotFoundError(f"No data found at the specified path: {input_json_path}")
+
+    # Load data from input JSON file
+    with open(input_json_path, "r") as file:
+        data = json.load(file)
+
+    if not isinstance(data, list):
+        raise ValueError("Loaded data is not in the expected list format.")
+
+    # Assuming each item in the list contains a 'labels' key with a list of labels
+    all_labels_list = [item["labels"] for item in data]
+    all_labels = sorted(list(set(chain(*all_labels_list))))
+
+    # Compute label2id and id2label mappings
+    label2id = {label: i for i, label in enumerate(all_labels)}
+    id2label = {i: label for label, i in label2id.items()}
+
     # Data to be saved
     label_encoder_data = {
         "label2id": label2id,
         "id2label": id2label
     }
-    
-    # Save the mappings to the output pickle file
-    with open(output_pickle_path, "wb") as file:
-        pickle.dump(label_encoder_data, file)
-    
-    print(f"Data saved to {output_pickle_path}.")
-    
-    return output_pickle_path
+
+    # Save the mappings to the output JSON file
+    with open(output_json_path, "w") as file:
+        json.dump(label_encoder_data, file, indent=4)
+
+    print(f"Data saved to {output_json_path}.")
+
+    return output_json_path
 
 
+load_and_transform_labels_from_json(input_json_path=INPUT_DATA_JSON_PATH, output_json_path=OUTPUT_LABELS_JSON_PATH)

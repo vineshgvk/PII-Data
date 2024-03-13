@@ -1,33 +1,25 @@
-'''
-missing_values.py
-Looks for N/As in the dataset and removes relevent records accordingly.
-data_download > missing_values (returns missing_values.pkl)
-'''
-import pickle
+import pandas as pd
 import os
+import pickle
+import json
 
 # Get the current working directory
 PROJECT_DIR = os.getcwd()
-# pklPath is input to function. outPklPath is path after processing.
-pklPath = os.path.join(PROJECT_DIR, 'data.pkl')
-outPklPath = os.path.join(PROJECT_DIR, 'missing_values.pkl')
+# jsonPath is input to function. outPklPath is path after processing.
+jsonPath = os.path.join(PROJECT_DIR, "data", "processed", "train.json")
+outPklPath = os.path.join(PROJECT_DIR, "data", "processed", "missing_values.pkl")
 
-def naHandler(inputPath=pklPath, outputPath=outPklPath):
+def naHandler(inputPath=jsonPath, outputPath=outPklPath):
     if os.path.exists(inputPath):
         print("Loading data from:", inputPath)
-        with open(inputPath, "rb") as file:
-            df = pickle.load(file)
+        with open(inputPath, "r") as file:
+            data = json.load(file)
+            df = pd.DataFrame(data)
     else:
         raise FileNotFoundError(f"FAILED! No such path at {inputPath}")
 
-    print("Original DataFrame:")
-    print(df.head())
-
     # Remove NAs wherever applicable.
     df.dropna(subset=['full_text'], inplace=True)
-
-    print("DataFrame after removing missing values:")
-    print(df.head())
 
     nullCount = df.isnull().sum().sum()
     if nullCount > 0:
@@ -42,4 +34,4 @@ def naHandler(inputPath=pklPath, outputPath=outPklPath):
 
     return outputPath
 
-naHandler(inputPath=pklPath, outputPath=outPklPath)
+naHandler(inputPath=jsonPath, outputPath=outPklPath)
