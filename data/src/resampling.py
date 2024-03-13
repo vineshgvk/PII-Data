@@ -1,7 +1,24 @@
+'''
+resampling.py
+Downsampling of negative examples
+'''
 import json
 import numpy as np
 import os
+import logging
 
+# Stash the logs in the data/logs path.
+logsPath = os.path.abspath(os.path.join(os.getcwd(), 'data', 'logs'))
+if not os.path.exists(logsPath):
+    # Create the folder if it doesn't exist
+    os.makedirs(logsPath)
+    print(f"Folder '{logsPath}' created successfully.")
+
+logging.basicConfig(filename = os.path.join(logsPath, 'logs.log'), # log filename with today's date.
+                    filemode = "w", # write mode
+                    level = logging.ERROR, # Set error as the default log level.
+                    format ='%(asctime)s - %(name)s - %(levelname)s - %(message)s', # logging format
+                    datefmt = '%Y-%m-%d %H:%M:%S',) # logging (asctime) date format
 
 # Get the current working directory
 PROJECT_DIR = os.getcwd()
@@ -34,6 +51,7 @@ def process_data_and_save(input_file_path):
         print("Processed data saved successfully.")
 
     except Exception as e:
+        logging.critical('Failure! resampling.py failed!')
         print(f"An unexpected error occurred: {e}")
 
 # Path to the JSON file

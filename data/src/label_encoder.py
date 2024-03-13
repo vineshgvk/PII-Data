@@ -1,6 +1,27 @@
+"""
+Load data from the input JSON file, compute label2id and id2label mappings,
+and save them to the output JSON file.
+
+:param input_json_path: Path to the input JSON file.
+:param output_json_path: Path to the output JSON file.
+"""
 import os
 import json
 from itertools import chain
+import logging
+
+# Stash the logs in the data/logs path.
+logsPath = os.path.abspath(os.path.join(os.getcwd(), 'data', 'logs'))
+if not os.path.exists(logsPath):
+    # Create the folder if it doesn't exist
+    os.makedirs(logsPath)
+    print(f"Folder '{logsPath}' created successfully.")
+
+logging.basicConfig(filename = os.path.join(logsPath, 'logs.log'), # log filename with today's date.
+                    filemode = "w", # write mode
+                    level = logging.ERROR, # Set error as the default log level.
+                    format ='%(asctime)s - %(name)s - %(levelname)s - %(message)s', # logging format
+                    datefmt = '%Y-%m-%d %H:%M:%S',) # logging (asctime) date format
 
 # Determine the absolute path of the project directory
 PROJECT_DIR = os.getcwd()
@@ -26,6 +47,7 @@ def load_and_transform_labels_from_json(input_json_path=INPUT_DATA_JSON_PATH, ou
         data = json.load(file)
 
     if not isinstance(data, list):
+        logging.critical('Failure! Loaded data is not in the expected list format.')
         raise ValueError("Loaded data is not in the expected list format.")
 
     # Assuming each item in the list contains a 'labels' key with a list of labels
