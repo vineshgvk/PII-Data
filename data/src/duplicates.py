@@ -1,6 +1,25 @@
+'''
+duplicates.py
+Looks for redundant values in the dataset..
+data_download > missing_values (returns missing_values.pkl) > duplicates.py (returns dup_removed.pkl)
+'''
 import os
 import pickle
 import pandas as pd
+import logging
+
+# Stash the logs in the data/logs path.
+logsPath = os.path.abspath(os.path.join(os.getcwd(), 'data', 'logs'))
+if not os.path.exists(logsPath):
+    # Create the folder if it doesn't exist
+    os.makedirs(logsPath)
+    print(f"Folder '{logsPath}' created successfully.")
+
+logging.basicConfig(filename = os.path.join(logsPath, 'logs.log'), # log filename with today's date.
+                    filemode = "w", # write mode
+                    level = logging.ERROR, # Set error as the default log level.
+                    format ='%(asctime)s - %(name)s - %(levelname)s - %(message)s', # logging format
+                    datefmt = '%Y-%m-%d %H:%M:%S',) # logging (asctime) date format
 
 # Get the current working directory
 PROJECT_DIR = os.getcwd()
@@ -24,6 +43,7 @@ def dupeRemoval(inputPath=pklPath, outputPath=outPklPath):
         with open(inputPath, "rb") as file:
             df = pickle.load(file)
     else:
+        logging.critical('FAILURE! duplicates.py error!')
         raise FileNotFoundError(f"FAILED! No such path at {inputPath}")
 
     # Removes rows i.e. any duplicates in the full_text column
