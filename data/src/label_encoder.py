@@ -67,21 +67,35 @@
 
 
 """
+label_encoder.py
 A module for label encoding the target column.
+duplicates.py > label_encoder.py
 """
 
 import os
 import pickle
 from itertools import chain
+import logging
 import pandas as pd
 
+# Stash the logs in the data/logs path.
+logsPath = os.path.abspath(os.path.join(os.getcwd(), 'data', 'logs'))
+if not os.path.exists(logsPath):
+    # Create the folder if it doesn't exist
+    os.makedirs(logsPath)
+    print(f"Folder '{logsPath}' created successfully.")
+
+logging.basicConfig(filename = os.path.join(logsPath, 'logs.log'), # log filename with today's date.
+                    filemode = "w", # write mode
+                    level = logging.ERROR, # Set error as the default log level.
+                    format ='%(asctime)s - %(name)s - %(levelname)s - %(message)s', # logging format
+                    datefmt = '%Y-%m-%d %H:%M:%S',) # logging (asctime) date format
 
 # Determine the absolute path of the project directory
 # PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.getcwd()
 
-
-INPUT_DATA_PKL_PATH=os.path.join(PROJECT_DIR, 'data', 'processed','dup_removed.pkl')
+INPUT_DATA_PKL_PATH=os.path.join(PROJECT_DIR, 'data', 'processed','tokenized_data.pkl')
 OUTPUT_LABELS_PKL_PATH = os.path.join(PROJECT_DIR, 'data', 'processed','label_encoder_data.pkl')
                
 
@@ -100,9 +114,9 @@ def load_and_transform_labels_from_pkl(input_pkl_path=INPUT_DATA_PKL_PATH, outpu
     # Load data from input pickle file
     with open(input_pkl_path, "rb") as file:
         data = pickle.load(file)
-        
             
     if not isinstance(data, pd.DataFrame):
+        logging.critical('FAILURE! label_encoder.py error!')
         raise ValueError("Loaded data is not a DataFrame as expected.")
     
     # Assuming 'labels' column contains a list of labels for each row
@@ -111,10 +125,6 @@ def load_and_transform_labels_from_pkl(input_pkl_path=INPUT_DATA_PKL_PATH, outpu
     
     # Compute all_labels, label2id, and id2label
     # all_labels = sorted(list(set(chain(*[x["labels"] for x in data]))))
-    
-    
-    
-    
     
     label2id = {l: i for i, l in enumerate(all_labels)}
     id2label = {v: k for k, v in label2id.items()}
@@ -129,7 +139,7 @@ def load_and_transform_labels_from_pkl(input_pkl_path=INPUT_DATA_PKL_PATH, outpu
     with open(output_pickle_path, "wb") as file:
         pickle.dump(label_encoder_data, file)
     
-    print(f"Data saved to {output_pickle_path}.")
+    print(f"Data saved at {output_pickle_path} after label_encoder")
     
     return output_pickle_path
 
