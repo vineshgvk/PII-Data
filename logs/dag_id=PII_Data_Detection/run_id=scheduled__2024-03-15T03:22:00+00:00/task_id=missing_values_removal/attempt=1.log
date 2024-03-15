@@ -1,0 +1,30 @@
+[2024-03-15T00:35:24.551-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: PII_Data_Detection.missing_values_removal scheduled__2024-03-15T03:22:00+00:00 [queued]>
+[2024-03-15T00:35:24.566-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: PII_Data_Detection.missing_values_removal scheduled__2024-03-15T03:22:00+00:00 [queued]>
+[2024-03-15T00:35:24.567-0400] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-15T00:35:24.595-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): missing_values_removal> on 2024-03-15 03:22:00+00:00
+[2024-03-15T00:35:24.599-0400] {standard_task_runner.py:60} INFO - Started process 135545 to run task
+[2024-03-15T00:35:24.603-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'PII_Data_Detection', 'missing_values_removal', 'scheduled__2024-03-15T03:22:00+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmp1j0ncdwf']
+[2024-03-15T00:35:24.604-0400] {standard_task_runner.py:88} INFO - Job 47: Subtask missing_values_removal
+[2024-03-15T00:35:24.663-0400] {task_command.py:423} INFO - Running <TaskInstance: PII_Data_Detection.missing_values_removal scheduled__2024-03-15T03:22:00+00:00 [running]> on host MSI.
+[2024-03-15T00:35:24.844-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='PII_Data_Detection' AIRFLOW_CTX_TASK_ID='missing_values_removal' AIRFLOW_CTX_EXECUTION_DATE='2024-03-15T03:22:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-15T03:22:00+00:00'
+[2024-03-15T00:35:24.846-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-15T00:35:24.855-0400] {logging_mixin.py:188} INFO - fetched path from load_gcp_data task /home/vineshgvk/PII-Data/dags/processed/train_com.json
+[2024-03-15T00:35:24.855-0400] {logging_mixin.py:188} INFO - Loading data from: /home/vineshgvk/PII-Data/dags/processed/train_com.json
+[2024-03-15T00:35:24.866-0400] {logging_mixin.py:188} INFO - created outputPath /home/vineshgvk/PII-Data/data/processed/missing_values.pkl
+[2024-03-15T00:35:24.867-0400] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/operators/python.py", line 200, in execute
+    return_value = self.execute_callable()
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/operators/python.py", line 217, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/home/vineshgvk/PII-Data/dags/src/missing_values.py", line 50, in naHandler
+    with open(outputPath, "wb") as file:
+FileNotFoundError: [Errno 2] No such file or directory: '/home/vineshgvk/PII-Data/data/processed/missing_values.pkl'
+[2024-03-15T00:35:24.871-0400] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=PII_Data_Detection, task_id=missing_values_removal, execution_date=20240315T032200, start_date=20240315T043524, end_date=20240315T043524
+[2024-03-15T00:35:24.893-0400] {standard_task_runner.py:107} ERROR - Failed to execute job 47 for task missing_values_removal ([Errno 2] No such file or directory: '/home/vineshgvk/PII-Data/data/processed/missing_values.pkl'; 135545)
+[2024-03-15T00:35:24.940-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-03-15T00:35:24.996-0400] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

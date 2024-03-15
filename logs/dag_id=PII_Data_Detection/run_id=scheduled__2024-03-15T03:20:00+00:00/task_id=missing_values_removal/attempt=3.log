@@ -1,0 +1,18 @@
+[2024-03-15T00:41:49.171-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: PII_Data_Detection.missing_values_removal scheduled__2024-03-15T03:20:00+00:00 [queued]>
+[2024-03-15T00:41:49.206-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: PII_Data_Detection.missing_values_removal scheduled__2024-03-15T03:20:00+00:00 [queued]>
+[2024-03-15T00:41:49.207-0400] {taskinstance.py:2193} INFO - Starting attempt 3 of 4
+[2024-03-15T00:41:49.279-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): missing_values_removal> on 2024-03-15 03:20:00+00:00
+[2024-03-15T00:41:49.297-0400] {standard_task_runner.py:60} INFO - Started process 142900 to run task
+[2024-03-15T00:41:49.313-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'PII_Data_Detection', 'missing_values_removal', 'scheduled__2024-03-15T03:20:00+00:00', '--job-id', '88', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmpwgb1xjzu']
+[2024-03-15T00:41:49.321-0400] {standard_task_runner.py:88} INFO - Job 88: Subtask missing_values_removal
+[2024-03-15T00:41:49.455-0400] {task_command.py:423} INFO - Running <TaskInstance: PII_Data_Detection.missing_values_removal scheduled__2024-03-15T03:20:00+00:00 [running]> on host MSI.
+[2024-03-15T00:41:49.645-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='PII_Data_Detection' AIRFLOW_CTX_TASK_ID='missing_values_removal' AIRFLOW_CTX_EXECUTION_DATE='2024-03-15T03:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-15T03:20:00+00:00'
+[2024-03-15T00:41:49.648-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-15T00:41:49.660-0400] {logging_mixin.py:188} INFO - fetched path from load_gcp_data task /home/vineshgvk/PII-Data/dags/processed/train_com.json
+[2024-03-15T00:41:49.661-0400] {logging_mixin.py:188} INFO - Loading data from: /home/vineshgvk/PII-Data/dags/processed/train_com.json
+[2024-03-15T00:41:49.683-0400] {logging_mixin.py:188} INFO - created outputPath /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-15T00:41:49.694-0400] {logging_mixin.py:188} INFO - Data pickled after naHandling at /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-15T00:41:49.696-0400] {python.py:202} INFO - Done. Returned value was: /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-15T00:41:49.774-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=PII_Data_Detection, task_id=missing_values_removal, execution_date=20240315T032000, start_date=20240315T044149, end_date=20240315T044149
+[2024-03-15T00:41:49.856-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-15T00:41:49.874-0400] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

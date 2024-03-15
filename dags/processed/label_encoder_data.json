@@ -1,0 +1,12 @@
+{
+    "label2id": {
+        "B-NAME_STUDENT": 0,
+        "I-NAME_STUDENT": 1,
+        "O": 2
+    },
+    "id2label": {
+        "0": "B-NAME_STUDENT",
+        "1": "I-NAME_STUDENT",
+        "2": "O"
+    }
+}

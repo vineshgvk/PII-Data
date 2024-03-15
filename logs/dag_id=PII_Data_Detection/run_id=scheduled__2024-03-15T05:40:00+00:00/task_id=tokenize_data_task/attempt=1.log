@@ -1,0 +1,49 @@
+[2024-03-15T01:42:43.811-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: PII_Data_Detection.tokenize_data_task scheduled__2024-03-15T05:40:00+00:00 [queued]>
+[2024-03-15T01:42:43.849-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: PII_Data_Detection.tokenize_data_task scheduled__2024-03-15T05:40:00+00:00 [queued]>
+[2024-03-15T01:42:43.850-0400] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-15T01:42:43.915-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): tokenize_data_task> on 2024-03-15 05:40:00+00:00
+[2024-03-15T01:42:43.929-0400] {standard_task_runner.py:60} INFO - Started process 175389 to run task
+[2024-03-15T01:42:43.939-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'PII_Data_Detection', 'tokenize_data_task', 'scheduled__2024-03-15T05:40:00+00:00', '--job-id', '138', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmp601tnyk3']
+[2024-03-15T01:42:43.946-0400] {standard_task_runner.py:88} INFO - Job 138: Subtask tokenize_data_task
+[2024-03-15T01:42:44.068-0400] {task_command.py:423} INFO - Running <TaskInstance: PII_Data_Detection.tokenize_data_task scheduled__2024-03-15T05:40:00+00:00 [running]> on host MSI.
+[2024-03-15T01:42:44.186-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='PII_Data_Detection' AIRFLOW_CTX_TASK_ID='tokenize_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-03-15T05:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-15T05:40:00+00:00'
+[2024-03-15T01:42:44.187-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-15T01:42:44.195-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/resampled.json
+[2024-03-15T01:42:44.198-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/label_encoder_data.json
+[2024-03-15T01:42:44.199-0400] {logging_mixin.py:188} INFO - labelencoder data has been fectched successfully
+[2024-03-15T01:42:44.204-0400] {logging_mixin.py:188} INFO - resampled data has been fectched successfully
+[2024-03-15T01:42:45.771-0400] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/operators/python.py", line 200, in execute
+    return_value = self.execute_callable()
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/operators/python.py", line 217, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/home/vineshgvk/PII-Data/dags/src/tokenize_data.py", line 50, in tokenize_data
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 843, in from_pretrained
+    return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2048, in from_pretrained
+    return cls._from_pretrained(
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2287, in _from_pretrained
+    tokenizer = cls(*init_inputs, **init_kwargs)
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/models/deberta_v2/tokenization_deberta_v2_fast.py", line 133, in __init__
+    super().__init__(
+  File "/home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/tokenization_utils_fast.py", line 120, in __init__
+    raise ValueError(
+ValueError: Couldn't instantiate the backend tokenizer from one of: 
+(1) a `tokenizers` library serialization file, 
+(2) a slow tokenizer instance to convert or 
+(3) an equivalent slow tokenizer class to instantiate and convert. 
+You need to have sentencepiece installed to convert a slow tokenizer to a fast one.
+[2024-03-15T01:42:45.782-0400] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=PII_Data_Detection, task_id=tokenize_data_task, execution_date=20240315T054000, start_date=20240315T054243, end_date=20240315T054245
+[2024-03-15T01:42:45.809-0400] {standard_task_runner.py:107} ERROR - Failed to execute job 138 for task tokenize_data_task (Couldn't instantiate the backend tokenizer from one of: 
+(1) a `tokenizers` library serialization file, 
+(2) a slow tokenizer instance to convert or 
+(3) an equivalent slow tokenizer class to instantiate and convert. 
+You need to have sentencepiece installed to convert a slow tokenizer to a fast one.; 175389)
+[2024-03-15T01:42:45.851-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-03-15T01:42:45.881-0400] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
