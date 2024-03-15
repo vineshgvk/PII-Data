@@ -1,0 +1,16 @@
+[2024-03-15T01:34:23.980-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: PII_Data_Detection.resample_data scheduled__2024-03-15T05:32:00+00:00 [queued]>
+[2024-03-15T01:34:23.987-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: PII_Data_Detection.resample_data scheduled__2024-03-15T05:32:00+00:00 [queued]>
+[2024-03-15T01:34:23.987-0400] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-15T01:34:24.014-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): resample_data> on 2024-03-15 05:32:00+00:00
+[2024-03-15T01:34:24.020-0400] {standard_task_runner.py:60} INFO - Started process 170882 to run task
+[2024-03-15T01:34:24.024-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'PII_Data_Detection', 'resample_data', 'scheduled__2024-03-15T05:32:00+00:00', '--job-id', '132', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmpppn1sar1']
+[2024-03-15T01:34:24.026-0400] {standard_task_runner.py:88} INFO - Job 132: Subtask resample_data
+[2024-03-15T01:34:24.190-0400] {task_command.py:423} INFO - Running <TaskInstance: PII_Data_Detection.resample_data scheduled__2024-03-15T05:32:00+00:00 [running]> on host MSI.
+[2024-03-15T01:34:24.446-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='PII_Data_Detection' AIRFLOW_CTX_TASK_ID='resample_data' AIRFLOW_CTX_EXECUTION_DATE='2024-03-15T05:32:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-15T05:32:00+00:00'
+[2024-03-15T01:34:24.447-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-15T01:34:24.454-0400] {logging_mixin.py:188} INFO - fetched path from load_gcp_data task /home/vineshgvk/PII-Data/dags/processed/train_com.json
+[2024-03-15T01:34:24.477-0400] {logging_mixin.py:188} INFO - Processed data saved successfully. /home/vineshgvk/PII-Data/dags/processed/resampled.json
+[2024-03-15T01:34:24.477-0400] {python.py:202} INFO - Done. Returned value was: /home/vineshgvk/PII-Data/dags/processed/resampled.json
+[2024-03-15T01:34:24.500-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=PII_Data_Detection, task_id=resample_data, execution_date=20240315T053200, start_date=20240315T053423, end_date=20240315T053424
+[2024-03-15T01:34:24.566-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-15T01:34:24.618-0400] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
