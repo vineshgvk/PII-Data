@@ -1,0 +1,21 @@
+[2024-03-16T01:16:21.613-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_PII_Data_Detection.remove_duplicates scheduled__2024-03-16T05:14:00+00:00 [queued]>
+[2024-03-16T01:16:21.620-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_PII_Data_Detection.remove_duplicates scheduled__2024-03-16T05:14:00+00:00 [queued]>
+[2024-03-16T01:16:21.620-0400] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-16T01:16:21.665-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): remove_duplicates> on 2024-03-16 05:14:00+00:00
+[2024-03-16T01:16:21.670-0400] {standard_task_runner.py:60} INFO - Started process 415326 to run task
+[2024-03-16T01:16:21.675-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'test_PII_Data_Detection', 'remove_duplicates', 'scheduled__2024-03-16T05:14:00+00:00', '--job-id', '346', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmp7vxwr967']
+[2024-03-16T01:16:21.677-0400] {standard_task_runner.py:88} INFO - Job 346: Subtask remove_duplicates
+[2024-03-16T01:16:21.744-0400] {task_command.py:423} INFO - Running <TaskInstance: test_PII_Data_Detection.remove_duplicates scheduled__2024-03-16T05:14:00+00:00 [running]> on host MSI.
+[2024-03-16T01:16:21.855-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='test_PII_Data_Detection' AIRFLOW_CTX_TASK_ID='remove_duplicates' AIRFLOW_CTX_EXECUTION_DATE='2024-03-16T05:14:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-16T05:14:00+00:00'
+[2024-03-16T01:16:21.857-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-16T01:16:21.885-0400] {logging_mixin.py:188} INFO - fetched path from missing values task op /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-16T01:16:21.885-0400] {logging_mixin.py:188} INFO - Loading data from: /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-16T01:16:21.893-0400] {logging_mixin.py:188} INFO - Data pickled after dupeRemoval at /home/vineshgvk/PII-Data/dags/processed/duplicate_removal.pkl
+[2024-03-16T01:16:21.893-0400] {python.py:202} INFO - Done. Returned value was: /home/vineshgvk/PII-Data/dags/processed/duplicate_removal.pkl
+[2024-03-16T01:16:21.912-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=test_PII_Data_Detection, task_id=remove_duplicates, execution_date=20240316T051400, start_date=20240316T051621, end_date=20240316T051621
+[2024-03-16T01:16:21.916-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/utils/context.py:207 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2024-03-16T01:16:21.919-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/utils/email.py:154 RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+[2024-03-16T01:16:21.920-0400] {email.py:270} INFO - Email alerting: attempt 1
+[2024-03-16T01:16:22.410-0400] {email.py:281} INFO - Sent an alert email to ['gvk7663@gmail.com']
+[2024-03-16T01:16:23.020-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-16T01:16:23.048-0400] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

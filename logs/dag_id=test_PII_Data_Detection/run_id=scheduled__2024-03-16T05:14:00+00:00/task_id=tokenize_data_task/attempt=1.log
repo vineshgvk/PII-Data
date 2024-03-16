@@ -1,0 +1,52 @@
+[2024-03-16T01:16:33.348-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_PII_Data_Detection.tokenize_data_task scheduled__2024-03-16T05:14:00+00:00 [queued]>
+[2024-03-16T01:16:33.355-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_PII_Data_Detection.tokenize_data_task scheduled__2024-03-16T05:14:00+00:00 [queued]>
+[2024-03-16T01:16:33.355-0400] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-16T01:16:33.379-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): tokenize_data_task> on 2024-03-16 05:14:00+00:00
+[2024-03-16T01:16:33.383-0400] {standard_task_runner.py:60} INFO - Started process 415620 to run task
+[2024-03-16T01:16:33.386-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'test_PII_Data_Detection', 'tokenize_data_task', 'scheduled__2024-03-16T05:14:00+00:00', '--job-id', '349', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmp9hrfc5w5']
+[2024-03-16T01:16:33.388-0400] {standard_task_runner.py:88} INFO - Job 349: Subtask tokenize_data_task
+[2024-03-16T01:16:33.440-0400] {task_command.py:423} INFO - Running <TaskInstance: test_PII_Data_Detection.tokenize_data_task scheduled__2024-03-16T05:14:00+00:00 [running]> on host MSI.
+[2024-03-16T01:16:33.518-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='test_PII_Data_Detection' AIRFLOW_CTX_TASK_ID='tokenize_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-03-16T05:14:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-16T05:14:00+00:00'
+[2024-03-16T01:16:33.519-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-16T01:16:33.531-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/resampled.json
+[2024-03-16T01:16:33.536-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/label_encoder_data.json
+[2024-03-16T01:16:33.537-0400] {logging_mixin.py:188} INFO - labelencoder data has been fectched successfully
+[2024-03-16T01:16:33.543-0400] {logging_mixin.py:188} INFO - resampled data has been fectched successfully
+[2024-03-16T01:16:34.270-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/convert_slow_tokenizer.py:550 UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+[2024-03-16T01:16:34.529-0400] {logging_mixin.py:188} INFO - Inititated the tokenizer using the model microsoft/deberta-v3-base
+[2024-03-16T01:16:34.564-0400] {logging_mixin.py:188} WARNING - Map:   0%|          | 0/20 [00:00<?, ? examples/s]
+[2024-03-16T01:16:34.566-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.583-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.590-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.597-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.605-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.616-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.620-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.623-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.628-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.633-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.647-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.652-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.656-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.661-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.667-0400] {logging_mixin.py:188} WARNING - Map:  70%|#######   | 14/20 [00:00<00:00, 136.17 examples/s]
+[2024-03-16T01:16:34.668-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.677-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.680-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.682-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.686-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.690-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-16T01:16:34.733-0400] {logging_mixin.py:188} WARNING - Map: 100%|##########| 20/20 [00:00<00:00, 118.60 examples/s]
+[2024-03-16T01:16:34.737-0400] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 0/1 [00:00<?, ?ba/s]
+[2024-03-16T01:16:34.772-0400] {logging_mixin.py:188} WARNING - Creating json from Arrow format: 100%|##########| 1/1 [00:00<00:00, 28.82ba/s]
+[2024-03-16T01:16:34.835-0400] {python.py:202} INFO - Done. Returned value was: Dataset({
+    features: ['full_text', 'document', 'tokens', 'trailing_whitespace', 'provided_labels', 'input_ids', 'token_type_ids', 'attention_mask', 'offset_mapping', 'labels', 'length'],
+    num_rows: 20
+})
+[2024-03-16T01:16:34.868-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=test_PII_Data_Detection, task_id=tokenize_data_task, execution_date=20240316T051400, start_date=20240316T051633, end_date=20240316T051634
+[2024-03-16T01:16:34.869-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/utils/context.py:207 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2024-03-16T01:16:34.875-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/utils/email.py:154 RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+[2024-03-16T01:16:34.875-0400] {email.py:270} INFO - Email alerting: attempt 1
+[2024-03-16T01:16:35.308-0400] {email.py:281} INFO - Sent an alert email to ['gvk7663@gmail.com']
+[2024-03-16T01:16:35.941-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-16T01:16:35.952-0400] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

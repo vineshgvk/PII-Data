@@ -1,0 +1,13 @@
+dags_folder = /home/vineshgvk/PII-Data/dags
+default_timezone = EST
+load_examples = False
+enable_xcom_pickling = True
+base_log_folder = /home/vineshgvk/PII-Data/logs
+endpoint_url = http://localhost:8080
+google_key_path = /home/vineshgvk/PII-Data/key.json
+default_cpus = 1
+default_ram = 512000
+default_disk = 512000
+default_gpus = 0
+default_ui_timezone = EST
+child_process_log_directory = /home/vineshgvk/PII-Data/logs/scheduler

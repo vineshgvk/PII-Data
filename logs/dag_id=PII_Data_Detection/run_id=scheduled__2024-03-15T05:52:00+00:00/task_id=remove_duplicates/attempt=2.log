@@ -1,0 +1,17 @@
+[2024-03-15T23:54:57.450-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: PII_Data_Detection.remove_duplicates scheduled__2024-03-15T05:52:00+00:00 [queued]>
+[2024-03-15T23:54:57.456-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: PII_Data_Detection.remove_duplicates scheduled__2024-03-15T05:52:00+00:00 [queued]>
+[2024-03-15T23:54:57.456-0400] {taskinstance.py:2193} INFO - Starting attempt 2 of 3
+[2024-03-15T23:54:57.477-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): remove_duplicates> on 2024-03-15 05:52:00+00:00
+[2024-03-15T23:54:57.482-0400] {standard_task_runner.py:60} INFO - Started process 358657 to run task
+[2024-03-15T23:54:57.485-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'PII_Data_Detection', 'remove_duplicates', 'scheduled__2024-03-15T05:52:00+00:00', '--job-id', '275', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmpnb2o5fvy']
+[2024-03-15T23:54:57.487-0400] {standard_task_runner.py:88} INFO - Job 275: Subtask remove_duplicates
+[2024-03-15T23:54:57.544-0400] {task_command.py:423} INFO - Running <TaskInstance: PII_Data_Detection.remove_duplicates scheduled__2024-03-15T05:52:00+00:00 [running]> on host MSI.
+[2024-03-15T23:54:57.629-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='PII_Data_Detection' AIRFLOW_CTX_TASK_ID='remove_duplicates' AIRFLOW_CTX_EXECUTION_DATE='2024-03-15T05:52:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-15T05:52:00+00:00'
+[2024-03-15T23:54:57.631-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-15T23:54:57.636-0400] {logging_mixin.py:188} INFO - fetched path from missing values task op /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-15T23:54:57.636-0400] {logging_mixin.py:188} INFO - Loading data from: /home/vineshgvk/PII-Data/dags/processed/missing_values.pkl
+[2024-03-15T23:54:57.642-0400] {logging_mixin.py:188} INFO - Data pickled after dupeRemoval at /home/vineshgvk/PII-Data/dags/processed/duplicate_removal.pkl
+[2024-03-15T23:54:57.642-0400] {python.py:202} INFO - Done. Returned value was: /home/vineshgvk/PII-Data/dags/processed/duplicate_removal.pkl
+[2024-03-15T23:54:57.666-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=PII_Data_Detection, task_id=remove_duplicates, execution_date=20240315T055200, start_date=20240316T035457, end_date=20240316T035457
+[2024-03-15T23:54:57.700-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-15T23:54:57.732-0400] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

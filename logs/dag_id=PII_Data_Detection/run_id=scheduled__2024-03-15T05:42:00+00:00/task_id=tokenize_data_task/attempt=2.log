@@ -1,0 +1,48 @@
+[2024-03-15T23:56:11.779-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: PII_Data_Detection.tokenize_data_task scheduled__2024-03-15T05:42:00+00:00 [queued]>
+[2024-03-15T23:56:11.789-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: PII_Data_Detection.tokenize_data_task scheduled__2024-03-15T05:42:00+00:00 [queued]>
+[2024-03-15T23:56:11.790-0400] {taskinstance.py:2193} INFO - Starting attempt 2 of 3
+[2024-03-15T23:56:11.818-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): tokenize_data_task> on 2024-03-15 05:42:00+00:00
+[2024-03-15T23:56:11.823-0400] {standard_task_runner.py:60} INFO - Started process 360798 to run task
+[2024-03-15T23:56:11.827-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'PII_Data_Detection', 'tokenize_data_task', 'scheduled__2024-03-15T05:42:00+00:00', '--job-id', '301', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmp0ydt1ot3']
+[2024-03-15T23:56:11.829-0400] {standard_task_runner.py:88} INFO - Job 301: Subtask tokenize_data_task
+[2024-03-15T23:56:11.905-0400] {task_command.py:423} INFO - Running <TaskInstance: PII_Data_Detection.tokenize_data_task scheduled__2024-03-15T05:42:00+00:00 [running]> on host MSI.
+[2024-03-15T23:56:12.030-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='PII_Data_Detection' AIRFLOW_CTX_TASK_ID='tokenize_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-03-15T05:42:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-15T05:42:00+00:00'
+[2024-03-15T23:56:12.032-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-15T23:56:12.039-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/resampled.json
+[2024-03-15T23:56:12.041-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/label_encoder_data.json
+[2024-03-15T23:56:12.042-0400] {logging_mixin.py:188} INFO - labelencoder data has been fectched successfully
+[2024-03-15T23:56:12.045-0400] {logging_mixin.py:188} INFO - resampled data has been fectched successfully
+[2024-03-15T23:56:12.832-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/transformers/convert_slow_tokenizer.py:550 UserWarning: The sentencepiece tokenizer that you are converting to a fast tokenizer uses the byte fallback option which is not implemented in the fast tokenizers. In practice this means that the fast version of the tokenizer can produce unknown tokens whereas the sentencepiece version would have converted these unknown tokens into a sequence of byte tokens matching the original piece of text.
+[2024-03-15T23:56:13.143-0400] {logging_mixin.py:188} INFO - Inititated the tokenizer using the model microsoft/deberta-v3-base
+[2024-03-15T23:56:13.182-0400] {logging_mixin.py:188} WARNING - Map:   0%|          | 0/20 [00:00<?, ? examples/s]
+[2024-03-15T23:56:13.184-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.196-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.204-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.211-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.224-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.237-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.242-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.245-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.252-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.257-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.272-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.277-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.281-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.286-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.293-0400] {logging_mixin.py:188} WARNING - Map:  70%|#######   | 14/20 [00:00<00:00, 127.00 examples/s]
+[2024-03-15T23:56:13.293-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.302-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.306-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.308-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.313-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.317-0400] {logging_mixin.py:188} INFO - Entered tokenize fucntion
+[2024-03-15T23:56:13.358-0400] {logging_mixin.py:188} WARNING - Map: 100%|##########| 20/20 [00:00<00:00, 114.15 examples/s]
+[2024-03-15T23:56:13.361-0400] {logging_mixin.py:188} WARNING - Creating json from Arrow format:   0%|          | 0/1 [00:00<?, ?ba/s]
+[2024-03-15T23:56:13.400-0400] {logging_mixin.py:188} WARNING - Creating json from Arrow format: 100%|##########| 1/1 [00:00<00:00, 25.67ba/s]
+[2024-03-15T23:56:13.476-0400] {python.py:202} INFO - Done. Returned value was: Dataset({
+    features: ['full_text', 'document', 'tokens', 'trailing_whitespace', 'provided_labels', 'input_ids', 'token_type_ids', 'attention_mask', 'offset_mapping', 'labels', 'length'],
+    num_rows: 20
+})
+[2024-03-15T23:56:13.508-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=PII_Data_Detection, task_id=tokenize_data_task, execution_date=20240315T054200, start_date=20240316T035611, end_date=20240316T035613
+[2024-03-15T23:56:13.574-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-15T23:56:13.594-0400] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

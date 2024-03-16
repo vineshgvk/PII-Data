@@ -1,0 +1,20 @@
+[2024-03-16T01:16:29.166-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_PII_Data_Detection.label_encoder scheduled__2024-03-16T05:14:00+00:00 [queued]>
+[2024-03-16T01:16:29.173-0400] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_PII_Data_Detection.label_encoder scheduled__2024-03-16T05:14:00+00:00 [queued]>
+[2024-03-16T01:16:29.173-0400] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-16T01:16:29.195-0400] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): label_encoder> on 2024-03-16 05:14:00+00:00
+[2024-03-16T01:16:29.199-0400] {standard_task_runner.py:60} INFO - Started process 415514 to run task
+[2024-03-16T01:16:29.202-0400] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'test_PII_Data_Detection', 'label_encoder', 'scheduled__2024-03-16T05:14:00+00:00', '--job-id', '348', '--raw', '--subdir', 'DAGS_FOLDER/src/airflow.py', '--cfg-path', '/tmp/tmpusrbwytl']
+[2024-03-16T01:16:29.204-0400] {standard_task_runner.py:88} INFO - Job 348: Subtask label_encoder
+[2024-03-16T01:16:29.247-0400] {task_command.py:423} INFO - Running <TaskInstance: test_PII_Data_Detection.label_encoder scheduled__2024-03-16T05:14:00+00:00 [running]> on host MSI.
+[2024-03-16T01:16:29.312-0400] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='test_PII_Data_Detection' AIRFLOW_CTX_TASK_ID='label_encoder' AIRFLOW_CTX_EXECUTION_DATE='2024-03-16T05:14:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-16T05:14:00+00:00'
+[2024-03-16T01:16:29.313-0400] {logging_mixin.py:188} INFO - fetched project directory successfully /home/vineshgvk/PII-Data
+[2024-03-16T01:16:29.319-0400] {logging_mixin.py:188} INFO - fetched path from resample_data task /home/vineshgvk/PII-Data/dags/processed/resampled.json
+[2024-03-16T01:16:29.323-0400] {logging_mixin.py:188} INFO - Data saved to /home/vineshgvk/PII-Data/dags/processed/label_encoder_data.json.
+[2024-03-16T01:16:29.324-0400] {python.py:202} INFO - Done. Returned value was: /home/vineshgvk/PII-Data/dags/processed/label_encoder_data.json
+[2024-03-16T01:16:29.344-0400] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=test_PII_Data_Detection, task_id=label_encoder, execution_date=20240316T051400, start_date=20240316T051629, end_date=20240316T051629
+[2024-03-16T01:16:29.348-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/utils/context.py:207 AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+[2024-03-16T01:16:29.353-0400] {logging_mixin.py:188} WARNING - /home/vineshgvk/airflow_env/lib/python3.10/site-packages/airflow/utils/email.py:154 RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+[2024-03-16T01:16:29.353-0400] {email.py:270} INFO - Email alerting: attempt 1
+[2024-03-16T01:16:29.833-0400] {email.py:281} INFO - Sent an alert email to ['gvk7663@gmail.com']
+[2024-03-16T01:16:30.465-0400] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-03-16T01:16:30.483-0400] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check
