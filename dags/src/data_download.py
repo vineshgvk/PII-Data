@@ -2,17 +2,6 @@ import os
 import json
 from google.cloud import storage
 import logging
-import NotFound
-# Get the current working directory
-# PROJECT_DIR = os.getcwd()
-# logging.info(PROJECT_DIR)
-
-# Set the path to your Google Cloud service account key file
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(PROJECT_DIR, "key.json")
-# os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/vineshgvk/PII-Data/key.json'
-
-
-# json_path=os.path.join(PROJECT_DIR, "data", "processed", "train.json")
 
 def load_data_from_gcp_and_save_as_json():
     try:
@@ -32,22 +21,14 @@ def load_data_from_gcp_and_save_as_json():
 
         # Specify the files to copy from GCP to the local directory
         files_to_copy = [
-            "Data/train_com.json"
+            "Data/train.json"
         ]
         print("Trying to create a storage client connection")
         # Create a client for interacting with Google Cloud Storage
         client = storage.Client()
         print("Trying to fetch the specified bucket name")
-        # try:
-        #     bucket = client.get_bucket(bucket_name)
-        #     print("Specified bucket is successfully fetched")
-            
-        # except NotFound:
-        #     print(f"The bucket {bucket_name} was not found.")
-        # Specify your Google Cloud Storage bucket name
-    #     bucket = client.get_bucket(bucket_name)
         
-        bucket = client.get_bucket('pii_data_load')
+        bucket = client.get_bucket('pii_train_data')
         print("Specified bucket is successfully fetched")
         
 
