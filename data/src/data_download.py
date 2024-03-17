@@ -42,7 +42,7 @@ def load_data_from_gcp_and_save_as_pkl(pickle_path):
         client = storage.Client()
 
         # Get the bucket
-        bucket = client.get_bucket('pii_data_load')
+        bucket = client.get_bucket('pii_train_data')
 
         # List to store dictionaries (JSON contents)
         json_contents_list = []
