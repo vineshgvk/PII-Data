@@ -1,9 +1,16 @@
+# Personally Identifiable Information Detection in Student Writing
+
 ## Introduction
 In this data-driven age, the protection of Personally Identifiable Information (PII) has become critically important, especially when it’s 
 embedded in the extensive personal details often found in essays.  This project involves in building an end-to-end strategy to detect sensitive personal identifiers from student essays.
 
-## Requirements
-<>
+## Tools Used in the Project
+Python <br>
+> Version `3.10`
+Airflow <br>
+Docker <br>
+Google Cloud Platform (GCP) <br>
+Git <br>
 
 ## Data Pipeline
 Data is featured by The Learning Agency Lab in Kaggle.
@@ -12,7 +19,7 @@ https://www.kaggle.com/competitions/pii-detection-removal-from-educational-data/
 
 ### Data Card
 | Feature | Type | Description |
-|----------------|------|-----------------|
+|----------------|----------------|-----------------|
 | Document | int  | An integer ID for each essay (primary key) |
 | full_text | string  | UTF-8 representation of the essay  |
 | tokens | list  | Each word of string type stored as a list  |
@@ -32,6 +39,9 @@ The labels being the target feature which has different classes to predict,
 | STREET_ADDRESS | This holds the student’s address.|
 
 ## Downloading Dataset
-`downloadData.py` downloads the zipped source files including test from the source
-`unzipFile.py` extracts the downloaded datasets (files are stored in .json)
-
+`downloadData.py` downloads the zipped source files including test from the source <br>
+`unzipFile.py` extracts the downloaded datasets (files are stored in .json) <br>
+`duplicates.py` checks for duplicate records and removes any. <br>
+`missing_values.py` looks for NULL values in the rows and removes the corresponding record. <br>
+`label_encoder.py` encodes target labels with value between 0 and n_classes-1. <br>
+`tokenize_data.py` tokenizes `full_text`. <br> 
