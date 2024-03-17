@@ -22,6 +22,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run unittests
-      run: python -m unittest discover -s /Users/lahariboni/Desktop/PII-Data/dags/test -p '*_test.py'
+      run: python -m unittest discover -s dags/test -p '*_test.py'
     - name: Run pytests
       run: pytest /Users/lahariboni/Desktop/PII-Data/dags/test
