@@ -6,7 +6,7 @@ embedded in the extensive personal details often found in essays.  This project 
 
 ## Tools Used in the Project
 Python <br>
-> Version `3.10`
+> Version `3.10` <br>
 Airflow <br>
 Docker <br>
 Google Cloud Platform (GCP) <br>
