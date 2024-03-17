@@ -5,8 +5,7 @@ In this data-driven age, the protection of Personally Identifiable Information (
 embedded in the extensive personal details often found in essays.  This project involves in building an end-to-end strategy to detect sensitive personal identifiers from student essays.
 
 ## Tools Used in the Project
-Python <br>
-> Version `3.10` <br>
+Python <br> Version `3.10`
 Airflow <br>
 Docker <br>
 Google Cloud Platform (GCP) <br>
