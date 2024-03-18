@@ -67,7 +67,7 @@ x-airflow-common:
     AIRFLOW__SMTP__SMTP_STARTTLS: 'True'  # or 'False' if your SMTP server does not support STARTTLS
     AIRFLOW__SMTP__SMTP_SSL: 'False'  # or 'True' if your SMTP server requires SSL/TLS
     AIRFLOW__SMTP__SMTP_USER: rayapudisaiakhil@gmail.com
-    AIRFLOW__SMTP__SMTP_PASSWORD: ezeadviobmkzhfsw
+    AIRFLOW__SMTP__SMTP_PASSWORD:           # enter your password here
     AIRFLOW__SMTP__SMTP_MAIL_FROM: rayapudisaiakhil@gmail.com
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
