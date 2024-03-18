@@ -5,9 +5,11 @@ import logging
 
 def load_data_from_gcp_and_save_as_json():
     try:
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/home/vineshgvk/PII-Data/key.json'
-        print("environment path is set")
         PROJECT_DIR = os.getcwd()
+        print(PROJECT_DIR)
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(PROJECT_DIR,"config",'key.json')
+        print("environment path is set")
+        
         
         print("current project directory",PROJECT_DIR)
         # Define the destination directory for saving JSON files

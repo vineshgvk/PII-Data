@@ -23,25 +23,8 @@ logging.basicConfig(filename=os.path.join(logsPath, 'logs.log'),  # log filename
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',  # logging format
                     datefmt='%Y-%m-%d %H:%M:%S', )  # logging (asctime) date format
 
-# Get the current working directory
-PROJECT_DIR = os.getcwd()
-# jsonPath is input to function. outPklPath is path after processing.
-jsonPath = os.path.join(PROJECT_DIR, 'data', 'processed', 'train.json')
 
-textThreshold = 25  # Remove records with full_text < 25 words.
-trainSamples = 100  # Needs at least trainSamples amount of records for training.
-expectedDtypes = {'document': int,
-                  'full_text': object,
-                  'tokens': object,
-                  'trailing_whitespace': object,
-                  'labels': object
-                  }
-
-
-def anomalyDetect(inputPath=jsonPath,
-                  textThreshold=textThreshold,
-                  trainSamples=trainSamples,
-                  expectedDtypes=expectedDtypes):
+def anomalyDetect(**kwargs):
     '''
     anomalyDetect looks for the right data types, and checks for text length below a threshold
     Args:
@@ -50,7 +33,21 @@ def anomalyDetect(inputPath=jsonPath,
     Returns:
         outputPath
     '''
+        # Get the current working directory
+    PROJECT_DIR = os.getcwd()
+    # jsonPath is input to function. outPklPath is path after processing.
 
+    textThreshold = 25  # Remove records with full_text < 25 words.
+    trainSamples = 100  # Needs at least trainSamples amount of records for training.
+    expectedDtypes = {'document': int,
+                    'full_text': object,
+                    'tokens': object,
+                    'trailing_whitespace': object,
+                    'labels': object
+                    }
+    ti = kwargs['ti']
+    inputPath = ti.xcom_pull(task_ids='load_data_from_gcp')
+    print("fetched path from load_gcp_data task",inputPath)
     # Open file in read mode if exists
     if os.path.exists(inputPath):
         with open(inputPath, "r") as file:
@@ -112,4 +109,4 @@ def anomalyDetect(inputPath=jsonPath,
     return True
 
 
-anomalyDetect(inputPath=jsonPath, textThreshold=textThreshold, trainSamples=trainSamples,expectedDtypes=expectedDtypes)
+#anomalyDetect(inputPath=jsonPath, textThreshold=textThreshold, trainSamples=trainSamples,expectedDtypes=expectedDtypes)

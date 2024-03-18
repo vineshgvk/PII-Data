@@ -3,21 +3,13 @@ import json
 import numpy as np
 from transformers import AutoTokenizer
 from datasets import Dataset
-
-# # Determine the absolute path of the project directory
-# PROJECT_DIR = os.getcwd()
-
-# LABEL2ID_PATH = os.path.join(PROJECT_DIR, 'data', 'processed', 'label_encoder_data.json')
-# DATA_PATH = os.path.join(PROJECT_DIR, 'data', 'processed', 'resampled.json')
-# OUTPUT_TOKENIZED_JSON_PATH = os.path.join(PROJECT_DIR, 'data', 'processed', 'tokenized_data.json')
-
-# # Assuming these variables are defined elsewhere
-# TRAINING_MODEL_PATH = 'microsoft/deberta-v3-base'
-# TRAINING_MAX_LENGTH = 2048
+import pickle
 
 # def tokenize_data(data_path=DATA_PATH, label2id_path=LABEL2ID_PATH, output_tokenized_json_path=OUTPUT_TOKENIZED_JSON_PATH, model_path=TRAINING_MODEL_PATH, max_inference_length=TRAINING_MAX_LENGTH):
 def tokenize_data(**kwargs):
-
+    '''
+    tokenize_data
+    '''
     PROJECT_DIR = os.getcwd()
     print("fetched project directory successfully",PROJECT_DIR)    
     ti_r = kwargs['ti']
@@ -28,11 +20,10 @@ def tokenize_data(**kwargs):
     label2id_path = ti_l.xcom_pull(task_ids='label_encoder')
     print("fetched path from resample_data task",label2id_path)
 
-
     # Load label2id from JSON file
     # PROJECT_DIR = os.getcwd()    
     # data_path = os.path.join(PROJECT_DIR, 'dags', 'processed', 'resampled.json')
-    output_tokenized_json_path = os.path.join(PROJECT_DIR, 'dags', 'processed', 'tokenized_data.json')
+    output_tokenized = os.path.join(PROJECT_DIR, 'dags', 'processed', 'tokenized_data.pkl')
     # label2id_path = os.path.join(PROJECT_DIR, 'dags', 'processed', 'label_encoder_data.json')
     model_path = 'microsoft/deberta-v3-base'
     max_inference_length = 2048
@@ -52,7 +43,6 @@ def tokenize_data(**kwargs):
 
     # Define tokenization function
     def tokenize(example):
-        print("Entered tokenize fucntion")
         text = []
         labels = []
 
@@ -98,9 +88,10 @@ def tokenize_data(**kwargs):
     ds = ds.map(tokenize, num_proc=1)
 
     # Save tokenized dataset to JSON file
-    ds.to_json(output_tokenized_json_path)
+    with open(output_tokenized,"wb") as f:
+        pickle.dump(ds,f)
 
-    return ds
+    return output_tokenized
 
 # Tokenize data and get tokenized dataset
 # tokenized_ds = tokenize_data()
