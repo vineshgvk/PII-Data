@@ -1,5 +1,5 @@
 [core]
     remote = myremote
 ['remote "myremote"']
-    url = gs://processed_datafiles
+    url = gs://pii_train_data
     credentialpath = ../key.json
