@@ -108,5 +108,3 @@ def anomalyDetect(**kwargs):
         logging.error("The 'labels' column is missing.")
     return True
 
-
-#anomalyDetect(inputPath=jsonPath, textThreshold=textThreshold, trainSamples=trainSamples,expectedDtypes=expectedDtypes)
