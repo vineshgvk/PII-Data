@@ -3,7 +3,7 @@
 [Jayatha Chandra](https://github.com/jayathachan)
 [Lahari Boni](https://github.com/LahariBoni)
 [Vinesh Kumar Gande](https://github.com/vineshgvk)
-[Abhignya Reddy]()
+[Abhigna Reddy](https://github.com/Abhignareddy7211)
 [Siddharthan Singaravel](https://github.com/SiddharthanSingaravel)
 
 # Introduction
