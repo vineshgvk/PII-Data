@@ -5,7 +5,7 @@ from transformers import AutoTokenizer
 from datasets import Dataset
 import pickle
 
-# def tokenize_data(data_path=DATA_PATH, label2id_path=LABEL2ID_PATH, output_tokenized_json_path=OUTPUT_TOKENIZED_JSON_PATH, model_path=TRAINING_MODEL_PATH, max_inference_length=TRAINING_MAX_LENGTH):
+
 def tokenize_data(**kwargs):
     '''
     tokenize_data
@@ -21,10 +21,8 @@ def tokenize_data(**kwargs):
     print("fetched path from resample_data task",label2id_path)
 
     # Load label2id from JSON file
-    # PROJECT_DIR = os.getcwd()    
-    # data_path = os.path.join(PROJECT_DIR, 'dags', 'processed', 'resampled.json')
+
     output_tokenized = os.path.join(PROJECT_DIR, 'dags', 'processed', 'tokenized_data.pkl')
-    # label2id_path = os.path.join(PROJECT_DIR, 'dags', 'processed', 'label_encoder_data.json')
     model_path = 'microsoft/deberta-v3-base'
     max_inference_length = 2048
     with open(label2id_path, "r") as file:
@@ -92,7 +90,4 @@ def tokenize_data(**kwargs):
         pickle.dump(ds,f)
 
     return output_tokenized
-
-# Tokenize data and get tokenized dataset
-# tokenized_ds = tokenize_data()
 

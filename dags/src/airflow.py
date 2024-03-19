@@ -1,3 +1,7 @@
+"""
+Airflow Dag for the preprocessing datapipeline
+"""
+
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
@@ -21,7 +25,6 @@ start_date = now - timedelta(minutes=1)
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    # 'start_date': start_date,
     'start_date': datetime(2023, 1, 1),
     'email_on_failure': False,
     'email_on_retry': False,
@@ -33,7 +36,6 @@ dag = DAG(
     'PII_Data_Detection',
     default_args=default_args,
     description='A DAG to load data from GCP and process it',
-    # schedule_interval=timedelta(days=1),
     #schedule_interval="*/2 * * * *",
     catchup=False
 )
@@ -70,7 +72,6 @@ handle_missing_values_task = PythonOperator(
     task_id='missing_values_removal',
     python_callable=naHandler,
     on_failure_callback=task_failure_alert,
-    # op_kwargs={'outputPath': '/home/vineshgvk/PII-Data/dags/processed/after_missing_values.pkl'},  # Specify the desired output path
     provide_context=True,
     dag=dag,
 )
@@ -80,10 +81,6 @@ remove_duplicates_task = PythonOperator(
     task_id='remove_duplicates',
     python_callable=dupeRemoval,
     on_failure_callback=task_failure_alert,
-    # op_kwargs={
-    #     'dup_inputPath': '{{ var.value.missing_val_outputPath }}',
-    #     'dup_outputPath': '{{ var.value.outPklPath }}',
-    # },
     provide_context=True,
     dag=dag,
 )
@@ -94,10 +91,6 @@ resample_data_task = PythonOperator(
     task_id='resample_data',
     python_callable=resample_data,
     on_failure_callback=task_failure_alert,
-    # op_kwargs={
-    #     'input_file_path': '{{ var.value.dup_outPklPath }}', 
-    #     'resamp_outputPath': '{{ var.value.outPklPath }}', # Adjust based on actual output/input path
-    # },
     provide_context=True,
     dag=dag,
 )
@@ -108,10 +101,6 @@ label_encode_task = PythonOperator(
     task_id='label_encoder',
     python_callable=target_label_encoder,
     on_failure_callback=task_failure_alert,
-    # op_kwargs={
-    #     'input_json_path': '{{ var.value.resamp_outputPath }}',
-    #     'output_json_path': '{{ var.value.OUTPUT_LABELS_JSON_PATH  }}',
-    # },
     provide_context=True,
     dag=dag,
 )
@@ -133,7 +122,6 @@ anomaly_Detection_task = PythonOperator(
     on_success_callback=task_success_alert,
     dag=dag,
 )
-
 
 load_data_task >> handle_missing_values_task >>remove_duplicates_task >> resample_data_task >> label_encode_task >> tokenize_data_task 
 load_data_task >> anomaly_Detection_task
