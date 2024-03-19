@@ -12,6 +12,23 @@
 
 According to the Federal Trade Commission (FTC) reports, in the year 2022, consumers lost approximately $8.8 billion to scams, with impostor scams accounting for $2.6 billion. This amount increased in 2023 to $10 billion in total losses, with impostor scams rising to around $2.7 billion. The image below shows the most common types of fraud, ordered by frequency.
 
+<p align="center">  
+    <br>
+	<a href="#">
+	      <img src="https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/top_frauds.png" alt="top_frauds" title="Top Frauds grouped in Categories in the US" height = "340" width ="590" />
+       
+  </a>	
+</p>
+<br>
+<p align="center">  
+    <br>
+	<a href="#">
+	      <img src="https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/imposter_trends.png" alt="imposter_trends" title="Trend of Imposter Scam Losses in US" height = "340" width ="590" />
+       
+  </a>	
+</p>
+<br>
+
 The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII).
 
 The post-pandemic era has witnessed a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. E-Learning platforms such as Coursera, Udemy, and others have gained immense popularity due to their affordability and high-quality education they offer.
@@ -26,7 +43,7 @@ Hence Machine learning emerges as a pivotal solution, offering the accuracy and 
 
 ## AI Solution
 
-In this project, we will explore key exploratory data analysis techniques and adopt a hybrid approach for PII detection. We plan to integrate Regex for basic detection, augment NER with deep learning for refined accuracy, and leverage transformer models for sophisticated PII analysis.
+In this project, we will explore key exploratory data analysis techniques and adopt a hybrid approach for PII detection. We plan to integrate Regex for mnb mxb basic detection, augment NER with deep learning for refined accuracy, and leverage transformer models for sophisticated PII analysis.
 
 Our goals comprise data pipeline preparation, ML Model Training, and ML Model updates to capture the evolving trends. We plan to assess data and concept drifts for sustained model efficacy and demonstrate the CI/CD process, ensuring streamlined model updates and optimizations.
 
@@ -163,9 +180,18 @@ GCP facilitated efficient ETL implementation, preserving intermediate files acro
 
 **You can avoid these steps to utilize our GCP bucket for pulling the data, if so, you can request access to our bucket by raising an issue and will respond accordingly.**
 
+![image](images/dcv_gcp_bucket.png)
+
 <hr>
 
+
 # Overall ML Project PipeLine
+
+![image](images/airflow_dag.png)
+
+![image](images/airflow_gantt_chart.png)
+
+
 
 **Gantt Chart**: It is a popular project management tool used to visualize and track the progress of tasks or activities over time. It provides a graphical representation of a pipeline's schedule, showing when each task is planned to start and finish.
 
@@ -219,6 +245,12 @@ The `Statsgen.ipynb` notebook generates the following outputs:
 - A visualization of the statistics, showing the distribution of values for each feature.
 - A schema that describes the structure of the data.
 This information can be used to improve the quality of the data and train machine learning models more effectively.
+
+![image](images/statsgen.png)
+
+![image](images/image.png)
+
+
 
 ## 5. Email Alerts
 
