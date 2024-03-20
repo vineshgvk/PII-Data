@@ -24,4 +24,4 @@ jobs:
     - name: Run unittests
       run: python -m unittest discover -s dags/test -p '*_test.py'
     - name: Run pytests
-      run: pytest /Users/lahariboni/Desktop/PII-Data/dags/test
+      run: pytest dags/test
