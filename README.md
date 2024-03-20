@@ -14,6 +14,8 @@ automated, scalable, and precise techniques to lessen the risks of identity thef
 cutting-edge methodologies, challenges, and applications in pinpointing PII data from essays. The aim is to shed light on the detection 
 strategies, their limitations, and the emerging trends.
 
+The significance of this project extends beyond academic pursuits; it has far-reaching implications for industries and organizations that handle sensitive personal data. From educational institutions to healthcare providers, financial institutions, and government agencies this project helps secure personal data.
+
 ## Dataset Information
 
 This Dataset is featured by The Learning Agency Lab in Kaggle. It consists of approximately 6800 essays authored by students participating in a massively open online course. Each essay was crafted in response to a unified assignment prompt, prompting students to integrate course content with real-world challenges. Supplementary data are available for this project, which may be incorporated into the analysis if additional data are needed to enhance model performance. To facilitate ongoing model refinement, the dataset will be partitioned into a stream of data points, ensuring a continuous supply of data for further training as the model's performance metrics fluctuate. Currently, the plan entails periodic retraining and data retrieval every month.
@@ -141,7 +143,7 @@ GCP facilitated efficient ETL implementation, preserving intermediate files acro
 
 5. Generate a key: After creating the service account, click on it from the list of service accounts. Then, navigate to the "Keys" tab. Click on the "Add key" dropdown and select "Create new key". Choose the key type (JSON is recommended) and click "Create". This will download the key file to your local machine.
 
-**You can avoid these steps to utilize our GCP bucket for pulling the data, if so, you can request access to our bucket by raising an issue and will respond accordingly.**
+**You can avoid these steps of creating a GCP bucket, instead you could raise a request to access our GCP bucket**
 
 ![image](images/dcv_gcp_bucket.png)
 
