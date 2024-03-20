@@ -6,51 +6,13 @@
 [Abhigna Reddy](https://github.com/Abhignareddy7211)
 [Siddharthan Singaravel](https://github.com/SiddharthanSingaravel)
 
-![Intro Image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Intro%20image.jpeg)
-
 # Introduction
 
-## Business Problem
-
-According to the Federal Trade Commission (FTC) reports, in the year 2022, consumers lost approximately $8.8 billion to scams, with impostor scams accounting for $2.6 billion. This amount increased in 2023 to $10 billion in total losses, with impostor scams rising to around $2.7 billion. The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII).
-The image below shows the most common types of fraud, ordered by frequency.
-
-<p align="center">  
-    <br>
-	<a href="#">
-	      <img src="https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/top_frauds.png" alt="top_frauds" title="Top Frauds grouped in Categories in the US" height = "340" width ="590" />
-       
-  </a>	
-</p>
-<br>
-<p align="center">  
-    <br>
-	<a href="#">
-	      <img src="https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/imposter_trends.png" alt="imposter_trends" title="Trend of Imposter Scam Losses in US" height = "340" width ="590" />
-       
-  </a>	
-</p>
-<br>
-
-The post-pandemic era has witnessed a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. E-Learning platforms such as Coursera, Udemy, and others have gained immense popularity due to their affordability and high-quality education they offer.
-
-These platforms are trusted by many and must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions. The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers, immigrants, etc. Ensuring the security of PII in education is not only about safeguarding individuals but also about averting legal and financial consequences for these institutions.
-
-In this project, we work on identifying Personally Identifiable Information (PII) in textual data, especially when it's embedded in the extensive personal details often found in Student Essays.
-
-Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability. With the exponential growth of text data and the complexities of PII detection, there is an urgent need for sophisticated and automated methods.
-
-Hence Machine learning emerges as a pivotal solution, offering the accuracy and automation required to adeptly detect and secure PII within vast textual databases.
-
-## AI Solution
-
-In this project, we will explore key exploratory data analysis techniques and adopt a hybrid approach for PII detection. We plan to integrate Regex for mnb mxb basic detection, augment NER with deep learning for refined accuracy, and leverage transformer models for sophisticated PII analysis.
-
-Our goals comprise data pipeline preparation, ML Model Training, and ML Model updates to capture the evolving trends. We plan to assess data and concept drifts for sustained model efficacy and demonstrate the CI/CD process, ensuring streamlined model updates and optimizations.
-
-We are moving towards a future where every action and interaction of ours will be a data point, fundamentally shaping how we navigate and understand the world.
-
-Thus, our PII detection project marks a genuine leap forward in the realm of data privacy and security. Our future focus includes real-time monitoring, privacy-preserving techniques, and compliance features to swiftly respond to breaches and meet global regulations. Our core mission is to promote trust and ethical data practices in today's data-driven landscape, ensuring a safer and better world for everyone!
+In this data-driven age, the protection of Personally Identifiable Information (PII) has become critically important, especially when it’s 
+embedded in the extensive personal details often found in essays. The task of identifying PII within essays is complex and requires 
+automated, scalable, and precise techniques to lessen the risks of identity theft, fraud, and privacy violations. This project delves into 
+cutting-edge methodologies, challenges, and applications in pinpointing PII data from essays. The aim is to shed light on the detection 
+strategies, their limitations, and the emerging trends.
 
 ## Dataset Information
 
