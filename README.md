@@ -6,6 +6,8 @@
 [Abhigna Reddy](https://github.com/Abhignareddy7211)
 [Siddharthan Singaravel](https://github.com/SiddharthanSingaravel)
 
+![Intro Image](https://github.com/rayapudisaiakhil/PII-Data/raw/main/images/Cyber%20board1.png)
+
 # Introduction
 
 ## Business Problem
