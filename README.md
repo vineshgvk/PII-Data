@@ -189,9 +189,11 @@ GCP facilitated efficient ETL implementation, preserving intermediate files acro
 
 ![image](images/airflow_dag.png)
 
+
+
+## Pipeline Optimization
+
 ![image](images/airflow_gantt_chart.png)
-
-
 
 **Gantt Chart**: It is a popular project management tool used to visualize and track the progress of tasks or activities over time. It provides a graphical representation of a pipeline's schedule, showing when each task is planned to start and finish.
 
