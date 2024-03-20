@@ -8,21 +8,21 @@ current_dir = os.path.dirname(__file__)
 parent_dir = os.path.abspath(os.path.join(current_dir, '..', 'src'))
 sys.path.insert(0, parent_dir)
 
-from data_download import load_data_from_gcp_and_save_as_pkl, PROJECT_DIR
+from data_download import load_data_from_gcp_and_save_as_json, PROJECT_DIR
 class TestDataDownload(unittest.TestCase):
 
     def setUp(self):
         """Setup before each test."""
         self.pickle_path = os.path.join(PROJECT_DIR, "data", "processed", "test.json")
         
-    def test_load_data_from_gcp_and_save_as_pkl(self):
-        """Test the load_data_from_gcp_and_save_as_pkl function."""
+    def test_load_data_from_gcp_and_save_as_json(self):
+        """Test the load_data_from_gcp_and_save_as_json function."""
         # Assuming the function creates a pickle file at the specified location.
         # This will not actually call the Google Cloud function but ensures
         # the file path logic and local file handling are correct.
         
         # Call the function with the test path
-        load_data_from_gcp_and_save_as_pkl(self.pickle_path)
+        load_data_from_gcp_and_save_as_json(self.pickle_path)
         
         # Check if the file was created
         self.assertTrue(os.path.exists(self.pickle_path))
