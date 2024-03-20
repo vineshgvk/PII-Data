@@ -204,6 +204,7 @@ In this project, the data pipeline is made up of various linked modules, each ta
 We utilize Apache Airflow for our pipeline. We create a DAG with our modules.
 
 # Data Pipeline Components
+![Data Pipeline Components](https://github.com/rayapudisaiakhil/PII-Data/raw/main/images/Data%20Pipeline.png)
 
 ## 1. Downloading Data
 In the initial phase, the dataset is fetched and extracted into the designated data folder using the following modules:
