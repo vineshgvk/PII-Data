@@ -12,7 +12,8 @@
 
 ## Business Problem
 
-According to the Federal Trade Commission (FTC) reports, in the year 2022, consumers lost approximately $8.8 billion to scams, with impostor scams accounting for $2.6 billion. This amount increased in 2023 to $10 billion in total losses, with impostor scams rising to around $2.7 billion. The image below shows the most common types of fraud, ordered by frequency.
+According to the Federal Trade Commission (FTC) reports, in the year 2022, consumers lost approximately $8.8 billion to scams, with impostor scams accounting for $2.6 billion. This amount increased in 2023 to $10 billion in total losses, with impostor scams rising to around $2.7 billion. The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII).
+The image below shows the most common types of fraud, ordered by frequency.
 
 <p align="center">  
     <br>
@@ -30,8 +31,6 @@ According to the Federal Trade Commission (FTC) reports, in the year 2022, consu
   </a>	
 </p>
 <br>
-
-The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII).
 
 The post-pandemic era has witnessed a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. E-Learning platforms such as Coursera, Udemy, and others have gained immense popularity due to their affordability and high-quality education they offer.
 
