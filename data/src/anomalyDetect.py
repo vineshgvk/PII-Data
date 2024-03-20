@@ -1,8 +1,6 @@
 """
 Load data from the input JSON file, validate datatypes and formats.
 
-:param input_json_path: Path to the input JSON file.
-
 """
 
 import os
