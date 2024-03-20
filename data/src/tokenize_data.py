@@ -1,3 +1,8 @@
+'''
+tokenize_data.py
+Tokenizing text data, adds input IDs and offset mapping
+'''
+
 import os
 import json
 import numpy as np

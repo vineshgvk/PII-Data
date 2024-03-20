@@ -9,7 +9,7 @@ from itertools import chain
 # OUTPUT_LABELS_JSON_PATH = os.path.join(PROJECT_DIR, 'data', 'processed', 'label_encoder_data.json')
 
 
-# def load_and_transform_labels_from_json(input_json_path=INPUT_DATA_JSON_PATH, output_json_path=OUTPUT_LABELS_JSON_PATH):
+
 def target_label_encoder(**kwargs):    
     """
     Load data from the input JSON file, compute label2id and id2label mappings,
@@ -23,7 +23,6 @@ def target_label_encoder(**kwargs):
     ti = kwargs['ti']
     inputPath = ti.xcom_pull(task_ids='resample_data')
     print("fetched path from resample_data task",inputPath)
-    
     
     # Check if the input file exists
     if not os.path.exists(inputPath):
@@ -61,4 +60,4 @@ def target_label_encoder(**kwargs):
     return outputPath
 
 
-# load_and_transform_labels_from_json(input_json_path=INPUT_DATA_JSON_PATH, output_json_path=OUTPUT_LABELS_JSON_PATH)
+

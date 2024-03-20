@@ -1,9 +1,6 @@
 """
-Load data from the input JSON file, compute label2id and id2label mappings,
-and save them to the output JSON file.
-
-:param input_json_path: Path to the input JSON file.
-:param output_json_path: Path to the output JSON file.
+label_encoder.py
+mapping labels to numeric IDs
 """
 import os
 import json

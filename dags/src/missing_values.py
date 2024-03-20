@@ -10,15 +10,6 @@ import json
 # # outPklPath = os.path.join(PROJECT_DIR, "data", "processed", "missing_values.pkl")
 
 
-# def naHandler(**kwargs):
-#     ti = kwargs['ti']
-#     inputPath = ti.xcom_pull(task_ids='load_data_from_gcp')
-#     print("fetched path from load_gcp_data task",inputPath)
-#     outputPath=os.path.join(PROJECT_DIR,"dags", "processed")
-#     # outputPath = kwargs.get('outputPath', 'path/to/output.pkl')  # Provide a default or ensure to pass this argument
-
-#     # The rest of your existing function follows...
-
 def naHandler(**kwargs):
     PROJECT_DIR = os.getcwd()
     print("fetched project directory successfully",PROJECT_DIR)    
@@ -54,5 +45,3 @@ def naHandler(**kwargs):
     print(f'Data pickled after naHandling at {outputPath}')
 
     return outputPath
-
-# naHandler(inputPath=jsonPath, outputPath=outPklPath)

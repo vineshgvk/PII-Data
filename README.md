@@ -233,7 +233,7 @@ The components involved in this process are:
 
 - **label_encoder.py**: Processes label data from `resampled.json` by mapping labels to numeric IDs and saves data as `label_encoder_data.json` into the `dags/processed/` folder.
 
-- **tokenize_data.py**: Tokenizes text data from `label_encoder_data.json` and maps its labels to numeric IDs, adds input ids, offset mapping, then saves `tokenized_data.pkl` into the `dags/processed/` folder for model building use.
+- **tokenize_data.py**: Tokenizes text data from `label_encoder_data.json`, adds input ids and offset mapping, then saves `tokenized_data.pkl` into the `dags/processed/` folder for model building use.
 
 Each module within the pipeline retrieves data from an input pickle path, performs processing operations, and saves the processed data to an output pickle path. The seamless integration of these modules within Airflow facilitates a structured and optimized data processing workflow.
 

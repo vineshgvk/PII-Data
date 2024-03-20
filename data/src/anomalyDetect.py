@@ -42,14 +42,7 @@ def anomalyDetect(inputPath=jsonPath,
                   textThreshold=textThreshold,
                   trainSamples=trainSamples,
                   expectedDtypes=expectedDtypes):
-    '''
-    anomalyDetect looks for the right data types, and checks for text length below a threshold
-    Args:
-        inputPath: Input JSON path after process_data_and_save.
-        outputPath: Output pickle path after dupeRemoval processing.
-    Returns:
-        outputPath
-    '''
+    
 
     # Open file in read mode if exists
     if os.path.exists(inputPath):
