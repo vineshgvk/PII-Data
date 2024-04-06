@@ -9,6 +9,8 @@
 # Introduction
 The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII). 
 
+In the U.S., the average cost of a data breach was reported to be $4.24 million in 2021, marking the highest average in 17 years. This cost encompasses lost business, notification expenses, and other damages​.The educational sector has become a prime target for cyberattacks. In the first half of 2022, the education sector experienced an average of 2297 cyberattacks each week, a 44% increase compared to the first half of 2021. This rise is attributed to the sector's rich data environment, including sensitive information on students. 
+
 The post-pandemic era has witnessed a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. E-Learning platforms such as Coursera, Udemy, and others have gained immense popularity due to their affordability and the high-quality education they offer.
 
 These platforms are trusted by many and must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions.The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers, immigrants etc. Ensuring the security of PII in education is not only about safeguarding individuals but also about averting legal and financial consequences for these institutions.
