@@ -7,13 +7,13 @@
 [Siddharthan Singaravel](https://github.com/SiddharthanSingaravel)
 
 # Introduction
-The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII). Since 2005, in the U.S. alone, there have been 2,691 data breaches in K–12 school districts and colleges/universities, affecting nearly 32 million records. Remarkably, 83% of these records were from post-secondary institutions, primarily due to hacking and ransomware attacks​ (Comparitech)​.
+The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII). Since 2005, in the U.S. alone, there have been 2,691 data breaches in K–12 school districts and colleges/universities, affecting nearly 32 million records. Remarkably, 83% of these records were from post-secondary institutions, primarily due to hacking and ransomware attacks.
 
 Post-pandemic, there has been a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. Between 2016 and 2020, thousands of students had their personal information compromised, including grades and Social Security numbers, leading to various forms of harm​ ​. E-Learning platforms, which have gained immense popularity due to their affordability and high-quality education, must prioritize the security of Personally Identifiable Information (PII).
 
 These platforms are trusted by many and must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions. The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers and immigrants. Ensuring the security of PII in education is not only about safeguarding individuals but also about averting legal and financial consequences for these institutions.
 
-In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking it as the most targeted industry for such incidents. This dramatic rise illustrates the urgent need for enhanced security measures​ (SentinelOne)​.
+In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking it as the most targeted industry for such incidents. This dramatic rise illustrates the urgent need for enhanced security measures.
 
 In this project, we work on identifying Personally Identifiable Information (PII) in textual data, especially when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
