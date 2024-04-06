@@ -88,6 +88,9 @@ The User Installation Steps are as follows:
   AIRFLOW__SMTP__SMTP_USER: # Enter your email 'don't put in quotes'
   AIRFLOW__SMTP__SMTP_PASSWORD: # Enter your password here generated from google in app password
   AIRFLOW__SMTP__SMTP_MAIL_FROM:  # Enter your email
+ - ${AIRFLOW_PROJ_DIR:-.}/dags: #locate your dags folder path here (eg:/home/vineshgvk/PII-Data-1/dags)
+ - ${AIRFLOW_PROJ_DIR:-.}/logs: #locate your project working directory folder path here (eg:/home/vineshgvk/PII-Data-1/logs)
+ - ${AIRFLOW_PROJ_DIR:-.}/config: #locate the config file from airflow (eg:/home/vineshgvk/airflow/config)
   ```
 5. In the cloned directory, navigate to the config directory under PII-Data and place your key.json file from the GCP service account for handling pulling the data from GCP.
 6. Run the Docker composer.
