@@ -7,27 +7,23 @@
 [Siddharthan Singaravel](https://github.com/SiddharthanSingaravel)
 
 # Introduction
-The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII). 
+The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII). Since 2005, in the U.S. alone, there have been 2,691 data breaches in K–12 school districts and colleges/universities, affecting nearly 32 million records. Remarkably, 83% of these records were from post-secondary institutions, primarily due to hacking and ransomware attacks​ (Comparitech)​.
 
-In the U.S, the average cost of a data breach was reported to be $4.24 million in 2021, marking the highest average in 17 years. This cost encompasses lost business, notification expenses, and other damages​.The educational sector has become a prime target for cyberattacks. In the first half of 2022, this sector experienced an average of 2297 cyberattacks each week, a 44% increase compared to the first half of 2021. This rise is attributed to the education sector's rich data environment, including sensitive information on students. 
+Post-pandemic, there has been a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. Between 2016 and 2020, thousands of students had their personal information compromised, including grades, bullying reports, and Social Security numbers, leading to various forms of harm​ ​. E-Learning platforms, which have gained immense popularity due to their affordability and high-quality education, must prioritize the security of Personally Identifiable Information (PII).
 
-Post-pandemic there has been a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. E-Learning platforms have gained immense popularity due to their affordability and high-quality education they offer.
+These platforms are trusted by many and must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions. The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers and immigrants. Ensuring the security of PII in education is not only about safeguarding individuals but also about averting legal and financial consequences for these institutions.
 
-These platforms are trusted by many and must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions.The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers, immigrants etc. Ensuring the security of PII in education is not only about safeguarding individuals but also about averting legal and financial consequences for these institutions.
+In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking it as the most targeted industry for such incidents. This dramatic rise illustrates the urgent need for enhanced security measures​ (SentinelOne)​.
 
-In this project we work on identifying Personally Identifiable Information (PII) in textual data, especially when it’s embedded in the extensive personal details often found in Student Essays. 
+In this project, we work on identifying Personally Identifiable Information (PII) in textual data, especially when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
-Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient , impractical and laborious.Keyword searches often overlook PII's complexity and variability. With the exponential growth of text data and the complexities of PII detection, there is an urgent need for sophisticated and automated methods.
-
-Hence Machine learning emerges as a pivotal solution, offering the accuracy and automation required to adeptly detect and secure PII within vast textual databases.
+With the exponential growth of text data and the complexities of PII detection, there is an urgent need for sophisticated and automated methods. Hence, Machine learning emerges as a pivotal solution, offering the accuracy and automation required to adeptly detect and secure PII within vast textual databases.
 
 In this project, we will explore key exploratory data analysis techniques and adopt a hybrid approach for PII detection. We plan to integrate Regex for basic detection, augment NER with deep learning for refined accuracy, and leverage transformer models for sophisticated PII analysis.
 
-Our goals comprise data pipeline preparation, ML Model Training and ML Model updates to capture the evolving trends. We plan to assess data and concept drifts for sustained model efficacy and demonstrate the CI/CD process, ensuring streamlined model updates and optimizations.
+Our goals comprise data pipeline preparation, ML Model Training, and ML Model updates to capture the evolving trends. We plan to assess data and concept drifts for sustained model efficacy and demonstrate the CI/CD process, ensuring streamlined model updates and optimizations.
 
-We are moving towards a future where every action and interaction of ours will be a data point, fundamentally shaping how we navigate and understand the world.
-
-Thus our PII detection project marks a genuine leap forward in the realm of data privacy and security. Our future focus includes real-time monitoring, privacy-preserving techniques, and compliance features to swiftly respond to breaches and meet global regulations. Our core mission is to promote trust and ethical data practices in today's data-driven landscape , ensuring a safer and better world for everyone!
+We are moving towards a future where every action and interaction of ours will be a data point, fundamentally shaping how we navigate and understand the world. Thus, our PII detection project marks a genuine leap forward in the realm of data privacy and security. Our future focus includes real-time monitoring, privacy-preserving techniques, and compliance features to swiftly respond to breaches and meet global regulations. Our core mission is to promote trust and ethical data practices in today's data-driven landscape, ensuring a safer and better world for everyone!
 
 ## Dataset Information
 
