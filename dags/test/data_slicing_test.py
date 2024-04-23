@@ -33,7 +33,7 @@ class TestDataDownload(unittest.TestCase):
                 # Verify the blob download was called on the mock_blob_instance
                 mock_blob_instance.download_to_filename.assert_called_once()
 
-                # Check if the function returned the expected path
+                # Check if the function returned the expected path.
                 self.assertIn("dags/processed/train.json", local_file_path)
 
 if __name__ == '__main__':
