@@ -1,8 +1,6 @@
-"""
-Airflow Dag for the preprocessing datapipeline
 '''
-load_data_task runs first.
-After load_data_task completes, handle_missing_values_task runs.
+data_slicing_batches_task runs first.
+After data_slicing_batches_task completes, handle_missing_values_task runs.
 After handle_missing_values_task completes, remove_duplicates_task runs.
 After remove_duplicates_task completes, resample_data_task runs.
 After resample_data_task completes, label_encode_task runs.
@@ -17,8 +15,7 @@ After compare_models_task completes, the branching_after_compare task runs. This
 If compare_models_task returns True, upload_model_to_gcp_task runs next, followed by serve_model_task.
 If compare_models_task returns False, the DAG ends at end_of_flow_task
 '''
-"""
-Airflow.py:
+
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 # from airflow.operators.bash_operator import BashOperator
@@ -48,7 +45,7 @@ import os
 send_alert_to='gvk7663@gmail.com'
 PROJECT_DIR = os.getcwd()
 data_dir=PROJECT_DIR
-# os.path.join(PROJECT_DIR, "dags", "processed") #sere to save the batched data
+
 num_data_points = 10 #number of data points to fetch
 # cumulative = True #make this true if new batc has to be retrained with old data
 #GCLOUD
@@ -59,6 +56,7 @@ KEY_PATH=os.path.join(PROJECT_DIR, "config", "key.json")
 now = datetime.now()
 # Adjust the start_date to be one minute before the current time
 start_date = now - timedelta(minutes=1)
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -241,6 +239,7 @@ upload_model_to_gcp_task = PythonOperator(
     on_failure_callback=task_failure_alert,
     provide_context=True,
     dag=dag,
+)
 
 streamlit_path=os.path.join(PROJECT_DIR, "dags", "src","serve.py")
 serve_model_task = BashOperator(
@@ -264,5 +263,3 @@ serve_model_task
 
 if __name__ == "__main__":
     dag.cli()
-
-
