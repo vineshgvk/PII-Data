@@ -122,10 +122,14 @@ The User Installation Steps are as follows:
 - TensorFlow Data Validation (TFDV)
 - Data Version Control (DVC)
 - Google Cloud Platform (GCP)
+- ML flow
+- StreamLit
 
 ## GitHub Actions
 
-GitHub Actions is configured to initiate workflows upon pushes and pull requests to any branch, including the "Name**" and main branches. When a new commit is pushed, the workflow triggers a build process `pytest` and `pylint`. This process produces test reports in XML format, which are then stored as artifacts. The workflow is designed to locate and execute test cases situated within the test directory that correspond to modules in the dags directory. Additionally, by utilizing `pylint`, the workflow assesses the code for readability, potential security issues, and adequate documentation. Upon the successful completion of these build checks , feature branches are merged into the main branch.
+GitHub Actions is configured to initiate workflows upon pushes and pull requests to any branch, including the "Name**" and main branches.
+
+When a new commit is pushed, the workflow triggers a build process `pytest` and `pylint`. This process produces test reports in XML format, which are then stored as artifacts. The workflow is designed to locate and execute test cases situated within the test directory that correspond to modules in the dags directory. Additionally, by utilizing `pylint`, the workflow assesses the code for readability, potential security issues, and adequate documentation. Upon the successful completion of these build checks , feature branches are merged into the main branch.
 
 ## Docker and Airflow
 
@@ -188,12 +192,12 @@ We utilize Apache Airflow for our pipeline. We create a DAG with our modules.
 ## 1. Downloading Data
 In the initial phase, the dataset is fetched and extracted into the designated data folder using the following modules:
 
-- **data_download.py**: This script ensures downloading and extracting the dataset `train.json` from Google Cloud bucket into the `dags/processed` location in your folder structure.
+- **data_slicing_batches_task.py**: This script ensures downloading and extracting the dataset `train.json` from Google Cloud bucket into the `dags/processed` location in your folder structure.After extracting the data, we proceed with data slicing.
 
 ## 2. Anomaly Detection
 Prior to moving to inference data and model training, it is very important to detect any anomalies present in the data. The script `anomalyDetect.py` performs anomaly detection and verifies data integrity and quality in `train.json` from GCP.
 
-- **anomalyDetect.py**: Specifically, this script performs several key checks like text length validation, sample size check, data type validation, token length check, trailing whitespace check, and label validation on the `train.json` file loaded from GCP bucket.
+- **anomalyDetect.py**: Specifically, this script performs several key checks like text length validation, sample size check, data type validation, token length check, trailing whitespace check, and label validation on the `train.json` file loaded from GCP bucket.Alerts will be sent when Anomaly’s are detected.
 
 ## 3. Cleaning Data
 Data quality is extremely important in machine learning for reliable results. Hence, we conduct exploratory data analysis to ensure high-quality data, which is essential for effective model training and decision-making.
@@ -238,6 +242,114 @@ We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (re
 
 <hr>
 
+# Machine Learning Modeling Pipeline
+We've set up our machine learning pipeline on Google Cloud Platform (GCP). We uploaded our codebase and created Docker images. After that, we uploaded the Docker images to the Artifact Registry. We then used  (what did we use for deployment )for training and deploying our model.
+
+# Machine Learning Pipeline Components
+
+## 1. Trainer
+
+Trainer Components:
+
+Dockerfile: Utilized to execute the training job.
+
+train.py: This Python script constructs the model using training data sourced from Google Cloud and subsequently saves it to Local Environment.
+
+file.py: Contains the X algorithm, functions for outlier removal, and hyperparameter tuning processes.
+
+## 2. Serve
+
+The components are designed to deploy the ML model on where are we deploying following its training:
+
+predict.py: 
+
+Dockerfile: Employed to host the serving module, facilitating the deployment of the model on Vertex AI.
+
+## 3. Model Pipeline
+
+build.py: This script is responsible for initiating a training job by utilizing the Docker images prepared by the trainer component. After training, it manages the deployment of the trained model to an endpoint on Vertex AI, where the model will be served.
+
+## 4. Inference
+
+inference.py: This script is designed to send JSON input data to the model in order to obtain predictions. It handles the communication between the input data and the deployed model, facilitating the inference process.
+
+# Experimental tracking pipeline (MLFLOW)
+
+For monitoring our experimental machine learning pipeline, we employ MLflow, Docker, and Python. We selected three key metrics to determine the optimal model parameters from the plot provided:
+
+Pictured: Parallel Plot for visualizing the parameter-metrics combinations for our model
+
+# Staging, Production and Archived models (MLFLOW)
+
+We use ML flow to manage our models across different stages—Archiving, Staging, and Production—because it enables us to leverage the models stored in the artifact registry and deploy them dynamically on a predefined port. This setup enhances our ability to reuse and serve models efficiently and flexibly.
+
+Pictured: The image shows logs in ML flow for various experimental models, including details on parameters, metrics, and versions.
+
+# Model Pipeline
+
+## Train the model
+
+The model is trained using  function. It takes x inputs and gives y outputs. The inputs are . The outputs are .
+
+Save the model
+
+The model is saved locally using save_and_upload_model function and uploaded to GCS.
+
+## Hyper Parameter Tuning
+
+This model has three hyper-parameters namely Learning Rate, Number of Training Epochs, Per Device Train Batch Size.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
+
+Additionally we used also TensorBoard is used to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
+
+## Model Analysis
+
+The model is analysed by - what function did we use to analyze the model?
+
+Model Efficacy Report and Visuals
+
+The plot above shows the silhouette score plots for different number of clusters. The closer it is to +1, the better it is - Add Plot
+
+
+The model has the following metrics: Silhouette Score, Calinski Harabasz score and Davies Bouldin score. Below are the visuals of clusters formed after PCA and the distribution of customers into clusters.
+
+Add Plots
+
+# Deployment Pipeline
+
+We've deployed the ML Model on a Vertex-AI Endpoint, utilizing StreamLit to handle requests. We've set up Model and Traffic Monitoring using X, which is linked to a Looker Dashboard to assess latency related to server load. Additionally, we use X to detect any data drifts.
+
+# Model Insights
+
+Insert Visualizations of our Model Insights
+
+# Monitoring
+
+Are we creating a Monitoring Dashboard? We've set up a Monitoring Dashboard to track the extend of data or concept drift ( if any exists ). We use ELK to log the feature input values, the predicted cluster, and timestamps(what do we log). We also record key metrics such as the (what are our key metrics )latency between predictions.
+
+You can view the monitoring dashboard on Looker.( Add Link to the Dashboard )
+
+# Cost Analysis:
+
+The following is the breakdown of costs associated with the Machine Learning pipeline on Google Cloud Platform (GCP) hosted on US East1 Region.
+
+Initial Cost Analysis
+
+Model Training using Vertex AI: $
+
+Deploying Model: $
+
+Total Training and Deployment Cost: $
+
+Serving Analysis
+
+Daily Online Prediction for Model Serving: $
+
+Weekly serving cost: $
+
+Monthly serving cost: $
+
+Yearly serving cost: $
+
 # Contributing / Development Guide
 
 **This is the user guide for developers**
@@ -245,6 +357,8 @@ We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (re
 Before developing our code, we should install the required dependencies
 ```python
 pip install -r requirements.txt
+
+
 ```
 
 ## Testing
@@ -277,13 +391,37 @@ If you prefer to run tests for a specific module, specify the path to the test f
 ```
 This approach allows you to isolate and debug any failures in specific areas of your project without running the entire suite of tests.
 
+## Testing @Lahari B
+
+Prior to uploading code to GitHub, execute the commands below on your local machine to verify a successful build.
+
+For checking formatting issues and potential vulnerabilities in the code, use:
+```
+pytest --pylint
+```
+To execute the test suites associated with your modules, enter:
+```
+pytest
+```
 ## Airflow Dags
 
-After your code for data pipeline modules is built successfully, copy them to `dags/src/`. Write your Python Operator in `airflow.py` under `dags/src/`. Set pipeline flow using the `>>` operator.
+Once your code for data pipeline modules is built successfully, copy them to dags/src/. Create your Python Operator in airflow.py within dags/src/. Set pipeline dependencies using the >> operator.
 
-After this step, we need to edit our `docker-compose.yaml` file.Docker
+After this step, we then proceed to edit our docker-compose.yaml file
 
-Install and set up a docker desktop for building custom images from `docker-compose.yaml` file.
+Install and set up a docker desktop for building custom images from docker-compose.yaml file.
+
+## Docker
+Additional: If your code has extra dependencies, modify the docker-compose.yaml file. Add them under the Environment section or as follows:
+
+```
+Add code here
+```
+Add your packages to _PIP_ADDITIONAL_REQUIREMENTS: in the docker-compose.yaml file.
+
+Next, initialize the Airflow database as outlined in User Installation Step n. Then, continue with DAG development up to Step n.
+
+If correctly set up, your module should appear in the DAG. If there are errors, you can check the logs and debug as needed.
 
 ## DVC Versioning
 
@@ -302,6 +440,27 @@ Setting up Data Versioning Control through dvc library installed as part of requ
     dvc remote modify myremote credentialpath <GOOGLE-KEY-JSON-PATH>
     ```
 
+## MLFlow
+
+Most important declarations in the code:
+
+1. Establish the tracking URL for MLFlow:
+```
+mlflow.set_tracking_uri("ADD URL")
+```
+2. Setting the minimum logging level to record only warnings and more severe issues (errors and critical alerts):
+```
+logging.basicConfig(level=logging.WARN)
+```
+3. Set up the logger:
+```
+logger = logging.getLogger(__name__)
+```
+
+4. Optionally, you may or may not choose to ignore warnings:
+```
+warnings.filterwarnings("ignore")
+```
 
 
   
