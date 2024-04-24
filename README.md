@@ -459,9 +459,6 @@ Install and set up a docker desktop for building custom images from docker-compo
 ## Docker
 Additional: If your code has extra dependencies, modify the docker-compose.yaml file. Add them under the Environment section or as follows:
 
-```
-Add code here
-```
 Add your packages to _PIP_ADDITIONAL_REQUIREMENTS: in the docker-compose.yaml file.
 
 Next, initialize the Airflow database as outlined in User Installation Step n. Then, continue with DAG development up to Step n.
