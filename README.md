@@ -328,8 +328,15 @@ Pictured: Plot for Performance Metrics Visualization of the Model
 
 We use ML flow to manage our models across different stages—Archiving, Staging, and Production—because it enables us to leverage the models stored in the artifact registry and deploy them dynamically on a predefined port. This setup enhances our ability to reuse and serve models efficiently and flexibly.
 
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/MLFLOW.png)
+
+Pictured: Existing Logs on MLFlow for all the Experimental Models
+
 # Logging and Monitoring
 We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics.
+
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ELK.png)
+Pictured: ELK Logs
 
 # Model Analysis
 
