@@ -327,9 +327,11 @@ Pictured: train_loss
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Confusion_Matrix.png)
 Pictured: Confusion matrix for labels 
 
-# Deployment Pipeline
+# Serving through Streamlit
 
 We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
+
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/pii-streamlit.jpg)
 
 
 # Cost Analysis:
