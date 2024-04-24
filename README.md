@@ -302,7 +302,7 @@ We utlized Tensorboard to create Visualizations of the results obtained for Mode
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/gg.png)
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb4.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/training%20loss.png)
 
 # Deployment Pipeline
 
