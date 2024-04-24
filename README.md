@@ -302,7 +302,7 @@ We utlized Tensorboard to create Visualizations of the results obtained for Mode
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/T3%20EDITED.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/tree/main/images)
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb4.png)
 
