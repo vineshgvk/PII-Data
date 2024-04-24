@@ -28,7 +28,7 @@ Our goals comprise data pipeline preparation, ML Model Training, and ML Model up
 
 We are moving towards a future where every action and interaction of ours will be a data point, fundamentally shaping how we navigate and understand the world. Thus, our PII detection project marks a genuine leap forward in the realm of data privacy and security. Our future focus includes real-time monitoring, privacy-preserving techniques, and compliance features to swiftly respond to breaches and meet global regulations. Our core mission is to promote trust and ethical data practices in today's data-driven landscape, ensuring a safer and better world for everyone!
 
-## Dataset Information
+# Dataset Information
 
 This Dataset is featured by The Learning Agency Lab in Kaggle. It consists of approximately 6800 essays authored by students participating in a massively open online course. Each essay was crafted in response to a unified assignment prompt, prompting students to integrate course content with real-world challenges. Supplementary data are available for this project, which may be incorporated into the analysis if additional data are needed to enhance model performance. To facilitate ongoing model refinement, the dataset will be partitioned into a stream of data points, ensuring a continuous supply of data for further training as the model's performance metrics fluctuate. Currently, the plan entails periodic retraining and data retrieval every month.
 
@@ -197,7 +197,6 @@ Next, the preprocessed data is analyzed in inference.py to generate performance 
 We use Apache Airflow to orchestrate our data pipeline, treating each module as a distinct task within our primary DAG (Directed Acyclic Graph). This setup allows us to efficiently manage the flow from data acquisition to model deployment, ensuring each step is executed in the correct order and monitored for performance and success.
 
 # Data Download
-## 1. Downloading Data
 In this phase, the dataset is fetched and extracted into the designated data folder using the following modules:
 
 - **data_slicing_batches_task.py**: This script automates downloading and slicing the train.json dataset from a Google Cloud bucket into the dags/processed/Fetched directory, handling file management and data processing efficiently.
@@ -241,8 +240,6 @@ This information can be used to improve the quality of the data and train machin
 
 ![image](images/image.png)
 
-
-
 ## Email Alerts
 
 We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (refer to step 4 in user installation above) to receive instant alerts as email notifications upon task or DAG (Directed Acyclic Graph) failures and successes. These email alerts are crucial for monitoring and promptly addressing issues in data pipelines, ensuring data integrity, and minimizing downtime.
@@ -255,6 +252,7 @@ We established our machine learning pipeline within a local environment, seamles
 Our model is stored in Google Cloud Storage (GCS).We leverage Docker images that we created and uploaded to the Artifact Registry. This setup enables streamlined training and deployment processes for our model, ensuring smooth execution and scalability.
 
 # Model Performance Evaluation:
+
 Ensuring the continuous effectiveness of machine learning models requires diligent monitoring and evaluation.
 To address this, our Model Performance Evaluation process involves a series of scripts that assess, validate, and adjust model performance over time.
 
@@ -263,6 +261,10 @@ To address this, our Model Performance Evaluation process involves a series of s
 - **model_performance_check.py**:  This script assesses the effectiveness of a machine learning model by retrieving key metrics such as precision, recall, and F1 score from a prior inference task. The results are obtained through XCom from the task labeled 'inference'. Based on these metrics, the script decides whether the model requires retraining—triggering retraining if recall is below 0.9 and F1 score is under 0.8. It then **prints** these metrics to the console for immediate observation and **pushes** the retraining decision back to XCom for use in subsequent tasks, ensuring that the workflow dynamically adapts to maintain high model performance.
 
 # Model Retraining
+
+Regular model retraining is crucial for maintaining accuracy and relevance by updating models with evolving data patterns, preventing degradation and addressing concept drifts.
+To address this, our Model Retraining process employs a set of scripts that continuously evaluate, validate, and refine model performance over time.
+
 - **Train.py**: This script is used for Model Training. It designed to train a token classification model using a DistilBERT-based architecture. It fine-tunes the model on labeled data, logs training metrics to TensorBoard, and saves the best-performing model based on F1 score. The training parameters are tuned using a grid search approach, and the script also includes functionality for evaluating the trained model on test data and logging the evaluation metrics.
 
 - **predict.py**: This script manages the tokenization and prediction process using a pretrained model, calculating precision, recall, and F1 scores for each label. It logs these metrics to MLflow, which tracks and saves the run data for analysis. Additionally, it generates a confusion matrix that is saved for visual analysis. All processed data and results, including tokenized datasets and evaluation metrics, are systematically stored under the `dags/processed/` directory, making them readily accessible for detailed analysis and model validation.
@@ -292,20 +294,23 @@ Pictured: Plot for visualizing the parameter-metrics combinations for our model
 We use ML flow to manage our models across different stages—Archiving, Staging, and Production—because it enables us to leverage the models stored in the artifact registry and deploy them dynamically on a predefined port. This setup enhances our ability to reuse and serve models efficiently and flexibly.
 
 # Logging and Monitoring
-We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics
+We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics.
 
 # Model Analysis
 
 We utlized Tensorboard to create Visualizations of the results obtained for Model Analysis such as model metrics and parameters.
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
+Pictured: F1 Score and Precision
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/gg.png)
+Pictured: Recall
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/training%20loss.png)
+Pictured: train_loss
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Confusion_Matrix.png)
-Picture above: Confusion matrix for labels 
+Pictured: Confusion matrix for labels 
 
 # Deployment Pipeline
 
