@@ -280,21 +280,41 @@ To address this, our Model Performance Evaluation process involves a series of s
 Regular model retraining is crucial for maintaining accuracy and relevance by updating models with evolving data patterns, preventing degradation and addressing concept drifts.
 To address this, our Model Retraining process employs a set of scripts that continuously evaluate, validate, and refine model performance over time.
 
-- **Train.py**: This script is used for Model Training. It designed to train a token classification model using a DistilBERT-based architecture. It fine-tunes the model on labeled data, logs training metrics to TensorBoard, and saves the best-performing model based on F1 score. The training parameters are tuned using a grid search approach, and the script also includes functionality for evaluating the trained model on test data and logging the evaluation metrics.
+- **Train.py**:
+  - This script is used for Model Training. It designed to train a token classification model using a DistilBERT-based architecture.
+  - It fine-tunes the model on labeled data, logs training metrics to TensorBoard, and saves the best-performing model based on F1 score and Recall.
+  - The training parameters are tuned using a grid search approach, and the script also includes functionality for evaluating the trained model on test data and logging the 
+    evaluation metrics.
 
-- **predict.py**: This script manages the tokenization and prediction process using a pretrained model, calculating precision, recall, and F1 scores for each label. It logs these metrics to MLflow, which tracks and saves the run data for analysis. Additionally, it generates a confusion matrix that is saved for visual analysis. All processed data and results, including tokenized datasets and evaluation metrics, are systematically stored under the `dags/processed/` directory, making them readily accessible for detailed analysis and model validation.
+- **predict.py**:
+  - This script manages the tokenization and prediction process using a pretrained model, calculating precision, recall, and F1 scores for each label.
+  - It logs these metrics to MLflow, which tracks and saves the run data for analysis. Additionally, it generates a confusion matrix that is saved for visual analysis.
+  - All processed data and results, including tokenized datasets and evaluation metrics, are systematically stored under the `dags/processed/` directory, making them readily 
+    accessible for detailed analysis and model validation.
 
-- **Model_versioning.py**: This script compares the performance metrics of the latest model version with the best model obtained during training .It assesses the model's performance on preprocessed test data by calculating precision, recall, and F1 score. This comparison helps determine whether retraining the model is necessary based on the observed improvements or deteriorations in model performance.
+- **Model_versioning.py**:
+  - This script compares the performance metrics of the latest model version with the best model obtained during training .
+  - It assesses the model's performance on preprocessed test data by calculating precision, recall, and F1 score. This comparison helps determine whether retraining the model is 
+    necessary based on the observed improvements or deteriorations in model performance.
 
-- **Serve.py**:  This script is used for model serving. It evaluates performance on test data, masking tokens in text based on model predictions, and and deploys a Streamlit app for interactive text masking. It also includes text preprocessing capabilities and logs execution time metrics for serving purposes.
+- **Serve.py**:
+  - This script is used for model serving.
+  - It evaluates performance on test data, masking tokens in text based on model predictions, and and deploys a Streamlit app for interactive text masking.
+  - It also includes text preprocessing capabilities and logs execution time metrics for serving purposes.
 
-- **upload_model_gcp.py**:  This script automates the process of uploading a machine learning model to GCP storage,managing versioning based on existing versions, and logging upload progress.
+- **upload_model_gcp.py**:
+  - This script automates the process of uploading a machine learning model to GCP storage,managing versioning based on existing versions, and logging upload progress.
 
 ## Hyper Parameter Tuning
 
-This model has three hyper-parameters namely Learning Rate, Number of Training Epochs, Per Device Train Batch Size.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
+This model has three hyper-parameters namely *Learning Rate, Number of Training Epochs, Per Device Train Batch Size*.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
 
 Additionally we used also TensorBoard is used to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
+
+<hr>
+
+We established our machine learning pipeline within a local environment, seamlessly integrating it with Airflow, which is Dockerized for efficient management and deployment. 
+Our model is stored in Google Cloud Storage (GCS).We leverage Docker images that we created and uploaded to the Artifact Registry. This setup enables streamlined training and deployment processes for our model, ensuring smooth execution and scalability.
 
 # Experimental tracking pipeline (MLFLOW)
 
@@ -302,7 +322,7 @@ For monitoring our experimental machine learning pipeline, we employ MLflow, Doc
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/MLFLOW%20EXPIREMNET%20TRACKING.png)
 
-Pictured: Plot for visualizing the parameter-metrics combinations for our model
+Pictured: Plot for Performance Metrics Visualization of the Model
 
 # Staging, Production and Archived models (MLFLOW)
 
@@ -327,14 +347,12 @@ Pictured: train_loss
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Confusion_Matrix.png)
 Pictured: Confusion matrix for labels 
 
-# Serving through Streamlit
+# Deployment Pipeline
 
 We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
-
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/pii-streamlit.jpg)
 
-
-# Cost Analysis:
+# Cost Analysis
 
 The following is the breakdown of costs associated with the Machine Learning pipeline on Google Cloud Platform (GCP) hosted on US East1 Region.
 
@@ -454,3 +472,5 @@ logger = logging.getLogger(__name__)
 ```
 warnings.filterwarnings("ignore")
 ```
+
+
