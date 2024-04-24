@@ -7,13 +7,13 @@
 [Siddharthan Singaravel](https://github.com/SiddharthanSingaravel)
 
 # Introduction
-The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII).  in the U.S. alone, there have been 2,691 data breaches in K–12 school districts and colleges/universities, affecting nearly 32 million records. Remarkably, 83% of these records were from post-secondary institutions, primarily due to hacking and ransomware attacks.
+The advent of AI heightens the risk of data and identity theft, with many scams stemming from data breaches and stolen Personally Identifiable Information (PII).
 
 Post-pandemic, there has been a significant shift among educational institutions towards online teaching and the widespread adoption of digital tools for various academic activities. Between 2016 and 2020, thousands of students had their personal information compromised, including grades and Social Security numbers, leading to various forms of harm​ ​. E-Learning platforms, which have gained immense popularity due to their affordability and high-quality education, must prioritize the security of Personally Identifiable Information (PII).
 
-These platforms are trusted by many and must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions. The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers and immigrants. Ensuring the security of PII in education is not only about safeguarding individuals but also about averting legal and financial consequences for these institutions.
+These platforms must prioritize the security of Personally Identifiable Information (PII), particularly as students frequently share sensitive data during their academic interactions. The protection of this data is crucial to prevent students from falling victim to scams, particularly affecting vulnerable groups like job seekers and immigrants.
 
-In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking it as the most targeted industry for such incidents. This dramatic rise illustrates the urgent need for enhanced security measures.
+In 2022 , the education sector saw a 44% increase in cyberattacks, marking it as the most targeted industry for such incidents. This dramatic rise illustrates the urgent need for enhanced security measures.
 
 In this project, we work on identifying Personally Identifiable Information (PII) in textual data, especially when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
@@ -119,11 +119,13 @@ The User Installation Steps are as follows:
 - GitHub Actions
 - Docker
 - Airflow
-- TensorFlow Data Validation (TFDV)
+- TensorFlow Data Validation (TFDV) (Need to Confirm)
 - Data Version Control (DVC)
-- Google Cloud Platform (GCP)
-- ML flow
-- StreamLit
+- Google Cloud Storage (GCS)
+- ML flow (Model Experiment Tracking)
+- ELK (Logging and Monitoring)
+- Tensorboard (Model Analysis)
+- StreamLit (Model Serving)
 
 ## GitHub Actions
 
@@ -145,9 +147,9 @@ DVC (Data Version Control) is an open-source tool essential for data versioning 
 
 ## Google Cloud Platform (GCP)
 
-We used GCP for storing the data pulled from Kaggle API. Our data version control is managed, hosted, and tracked on the Google Cloud Platform, which effortlessly accommodates large datasets and their versioning for building strong ETL pipelines. It enables simultaneous access and modification of data by multiple users, with built-in versioning features allowing easy retrieval of previous versions.
+We utilize Google Cloud Storage exclusively for storing our machine learning models, ensuring they are securely archived and readily accessible for deployment 
 
-GCP facilitated efficient ETL implementation, preserving intermediate files across various modular tasks. One must set up a service account to use Google Cloud Platform services using below steps. 
+One must set up a service account to use Google Cloud Platform services using below steps. 
 
 1. Go to the GCP Console: Visit the Google Cloud Console at https://console.cloud.google.com/.
 
@@ -161,41 +163,50 @@ GCP facilitated efficient ETL implementation, preserving intermediate files acro
 
 **You can avoid these steps of creating a GCP bucket, instead you could raise a request to access our GCP bucket**
 
-![image](images/dcv_gcp_bucket.png)
 
 <hr>
 
 
 # Overall ML Project PipeLine
 
-![image](images/airflow_dag.png)
+![image](images/ML%20Model%20Pipeline.jpeg)
 
 
 
 ## Pipeline Optimization
 
-![image](images/airflow_gantt_chart.png)
+![image](images/airflow_gantt_chart.png) - Replace with the image of updated pipeline
 
 **Gantt Chart**: It is a popular project management tool used to visualize and track the progress of tasks or activities over time. It provides a graphical representation of a pipeline's schedule, showing when each task is planned to start and finish.
 
 * We have minimized the execution time by running `anomaly_detect.py` in parallel with `missing_values_removal.py` after observing the initial Gantt chart.
 
-## Data Pipeline
+## End-to-End Pipeline for Model Deployment
 
-In this project, the data pipeline is made up of various linked modules, each tasked with processing the data through specific operations. We employ Airflow and Docker to manage and encapsulate these modules, treating each one as a distinct task within the primary data pipeline DAG (data pipeline).
+![image](images/ML%20PIPELINE%20OVERVIEW.png)
 
-We utilize Apache Airflow for our pipeline. We create a DAG with our modules.
+Our Model Pipeline has three major components
+1.Data Download
+2.Data Cleaning and Preprocessing
+3.Model Performance Evaluation
+4.Model Retraining
 
-# Data Pipeline Components
+Our Pipeline begins with data acquisition where we fetch Data from the Source and perform Data Slicing.After the Data is downloaded, in the next step, we clean and Preprocess the Data. 
+Next, the preprocessed data is analyzed in inference.py to generate performance metrics. These Performance Metrics are assessed in Model_performance_check.py.If these metrics are above a certain threshold, the model moves directly to Serve.py for deployment.However, if the metrics are below the threshold, the model undergoes retraining.After retraining, Model_versioning.py compares different model versions, selects the best one, and uploads it to Google Cloud Storage. Finally, the chosen model version is deployed using Serve.py.
+
+We use Apache Airflow to orchestrate our data pipeline, treating each module as a distinct task within our primary DAG (Directed Acyclic Graph). This setup allows us to efficiently manage the flow from data acquisition to model deployment, ensuring each step is executed in the correct order and monitored for performance and success.
+
+## 1.Data Download
+## Data Preprocessing
 ![Data Pipeline Components](https://github.com/rayapudisaiakhil/PII-Data/raw/main/images/Data%20Pipeline.png)
 
 ## 1. Downloading Data
 In the initial phase, the dataset is fetched and extracted into the designated data folder using the following modules:
 
-- **data_slicing_batches_task.py**: This script ensures downloading and extracting the dataset `train.json` from Google Cloud bucket into the `dags/processed` location in your folder structure.After extracting the data, we proceed with data slicing.
+- **data_slicing_batches_task.py**: This script automates downloading and slicing the train.json dataset from a Google Cloud bucket into the dags/processed/Fetched directory, handling file management and data processing efficiently.
 
 ## 2. Anomaly Detection
-Prior to moving to inference data and model training, it is very important to detect any anomalies present in the data. The script `anomalyDetect.py` performs anomaly detection and verifies data integrity and quality in `train.json` from GCP.
+Prior to moving to inference data and model training, it is very important to detect any anomalies present in the data. The script `anomalyDetect.py` performs anomaly detection and verifies data integrity and quality in `train.json`.
 
 - **anomalyDetect.py**: Specifically, this script performs several key checks like text length validation, sample size check, data type validation, token length check, trailing whitespace check, and label validation on the `train.json` file loaded from GCP bucket.Alerts will be sent when Anomaly’s are detected.
 
@@ -204,7 +215,8 @@ Data quality is extremely important in machine learning for reliable results. He
 
 The components involved in this process are:
 
-- **missing_values.py**: Removes missing values from `train.json` and saves the cleaned data frame as `missing_values.pkl` into the `dags/processed/` folder.
+- **missing_values.py**: This script loads a JSON file (train.json) containing data, Removes missing values from `train.json` missing checks for remaining null values, and then pickles the cleaned DataFrame into the file `missing_values.pkl`.
+Post that it saves into the`dags/processed/` folder.
 
 - **duplicates.py**: Identifies and eliminates duplicate records to preserve data integrity and then saves the data frame as `duplicate_removal.pkl` into the `dags/processed/` folder.
 
@@ -212,12 +224,12 @@ The components involved in this process are:
 
 - **label_encoder.py**: Processes label data from `resampled.json` by mapping labels to numeric IDs and saves data as `label_encoder_data.json` into the `dags/processed/` folder.
 
-- **tokenize_data.py**: Tokenizes text data from `label_encoder_data.json`, adds input ids and offset mapping, then saves `tokenized_data.pkl` into the `dags/processed/` folder for model building use.
+- **tokenize_data.py**: This script fetches and processes text data, utilizing mappings from `label_encoder_data.json`. It performs tokenization, which includes generating input IDs and offset mappings. The data is then divided into training and testing subsets. The complete tokenized dataset is stored as `ds_mapped`, with subsets specifically saved as `train_mapped` and `test_mapped` in JSON format at the paths `train_data.json` and `test_data.json` within the `dags/processed/` directory, facilitating subsequent model training and evaluation processes.
 
 Each module within the pipeline retrieves data from an input pickle path, performs processing operations, and saves the processed data to an output pickle path. The seamless integration of these modules within Airflow facilitates a structured and optimized data processing workflow.
 
 ## 4. Stats Gen
-It is very important to look at data and understand it from the feature level. This helps us avoid any potential discrepancies and biases in our model results. This is where Stats Gen (Statistical Data Generation) comes into the picture.
+It is very important to look at data and understand it from the feature level. This helps us avoid any potential discrepancies and biases in our model results. This is where Stats Gen (Statistical Data Generation) comes into picture.
 
 Stats Gen is used to understand data distributions, detect patterns, and make informed decisions about model selection and evaluation. These statistical insights guide feature engineering and help assess model performance, leading to improved predictive accuracy and generalization capabilities.
 
@@ -230,9 +242,9 @@ The `Statsgen.ipynb` notebook generates the following outputs:
 - A schema that describes the structure of the data.
 This information can be used to improve the quality of the data and train machine learning models more effectively.
 
-![image](images/statsgen.png)
+![image](images/statsgen.png) ###change images
 
-![image](images/image.png)
+![image](images/image.png)  ###change images
 
 
 
@@ -240,12 +252,16 @@ This information can be used to improve the quality of the data and train machin
 
 We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (refer to step 4 in user installation above) to receive instant alerts as email notifications upon task or DAG (Directed Acyclic Graph) failures and successes. These email alerts are crucial for monitoring and promptly addressing issues in data pipelines, ensuring data integrity, and minimizing downtime.
 
+We also established alerts for anomaly detection. If anomalies, like unexpected spikes or deviations, are detected in our data, immediate alerts are triggered and sent out.
+
 <hr>
 
 # Machine Learning Modeling Pipeline
-We've set up our machine learning pipeline on Google Cloud Platform (GCP). We uploaded our codebase and created Docker images. After that, we uploaded the Docker images to the Artifact Registry. We then used  (what did we use for deployment )for training and deploying our model.
 
-# Machine Learning Pipeline Components
+We established our machine learning pipeline within a local environment, seamlessly integrating it with Airflow, which is Dockerized for efficient management and deployment. 
+Our model is stored in Google Cloud Storage (GCS).We leverage Docker images that we created and uploaded to the Artifact Registry. This setup enables streamlined training and deployment processes for our model, ensuring smooth execution and scalability.
+
+# Machine Learning Pipeline Components 
 
 ## 1. Trainer
 
@@ -299,7 +315,7 @@ The model is saved locally using save_and_upload_model function and uploaded to 
 
 This model has three hyper-parameters namely Learning Rate, Number of Training Epochs, Per Device Train Batch Size.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
 
-Additionally we also used TensorBoard to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
+Additionally we used also TensorBoard is used to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
 
 ## Model Analysis
 
@@ -461,6 +477,3 @@ logger = logging.getLogger(__name__)
 ```
 warnings.filterwarnings("ignore")
 ```
-
-
-  
