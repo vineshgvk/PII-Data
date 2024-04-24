@@ -168,6 +168,7 @@ One must set up a service account to use Google Cloud Platform services using be
 
 
 # Overall ML Project PipeLine
+The following flowchart offers a brief overview of our ML Project Pipeline
 
 ![image](images/ML%20Model%20Pipeline.jpeg)
 
@@ -176,6 +177,7 @@ One must set up a service account to use Google Cloud Platform services using be
 ## Pipeline Optimization
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Gantt%20chart.png)
+Pictured above: Airflow DAG Execution Gantt Chart for Data Pipeline
 
 **Gantt Chart**: It is a popular project management tool used to visualize and track the progress of tasks or activities over time. It provides a graphical representation of a pipeline's schedule, showing when each task is planned to start and finish.
 
@@ -187,10 +189,10 @@ One must set up a service account to use Google Cloud Platform services using be
 Pictured above: Machine Learning Pipeline - Data to Deployment Flowchart
 
 Our Model Pipeline has four major components
-### 1.Data Download
-### 2.Data Cleaning and Preprocessing
-### 3.Model Performance Evaluation
-### 4.Model Retraining
+#### 1.Data Download
+#### 2.Data Cleaning and Preprocessing
+#### 3.Model Performance Evaluation
+#### 4.Model Retraining
 
 Our Pipeline begins with data acquisition where we fetch Data from the Source and perform Data Slicing. After the Data is downloaded, in the next step, we clean and Preprocess the Data. 
 Next, the preprocessed data is analyzed in inference.py to generate performance metrics. These Performance Metrics are assessed in Model_performance_check.py.If these metrics are above a certain threshold, the model moves directly to Serve.py for deployment.However, if the metrics are below the threshold, the model undergoes retraining.After retraining, Model_versioning.py compares different model versions, selects the best one, and uploads it to Google Cloud Storage. Finally, the chosen model version is deployed using Serve.py.
@@ -242,8 +244,10 @@ The `Statsgen.ipynb` notebook generates the following outputs:
 This information can be used to improve the quality of the data and train machine learning models more effectively.
 
 ![image](images/statsgen.png) 
+Pictured above: Feature Analysis Summary of the Text Data
 
 ![image](images/image.png)
+Pictured above : Data Schema Overview for Text Analysis
 
 ## Email Alerts
 
@@ -251,19 +255,25 @@ We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (re
 
 We also established alerts for anomaly detection. If anomalies, like unexpected spikes or deviations, are detected in our data, immediate alerts are triggered and sent out.
 
-<hr>
-
-We established our machine learning pipeline within a local environment, seamlessly integrating it with Airflow, which is Dockerized for efficient management and deployment. 
-Our model is stored in Google Cloud Storage (GCS).We leverage Docker images that we created and uploaded to the Artifact Registry. This setup enables streamlined training and deployment processes for our model, ensuring smooth execution and scalability.
-
 # Model Performance Evaluation:
 
 Ensuring the continuous effectiveness of machine learning models requires diligent monitoring and evaluation.
 To address this, our Model Performance Evaluation process involves a series of scripts that assess, validate, and adjust model performance over time.
 
-- **inference.py**: This script plays a key role in the continuous model evaluation cycle by fetching the latest model version from Google Cloud Storage and performing predictions on test data to compute essential performance metrics such as precision, recall, and F1 scores. The evaluation results, including the evaluation timestamp, are logged in a CSV file located in the `data/model_metrics.csv` within the project structure for performance tracking. The latest model version is also downloaded and stored in the `latest_version` directory, ensuring that the most current model is always used for predictions. This script ensures efficient credential management, model retrieval, and clean-up of storage, maintaining an organized and updated model deployment environment.
+- **inference.py**:
+  - This script plays a key role in the continuous model evaluation cycle by fetching the latest model version from Google Cloud Storage and performing predictions on test data 
+    to compute essential performance metrics such as precision, recall, and F1 scores.
+  - The evaluation results, including the evaluation timestamp, are logged in a CSV file located in the `data/model_metrics.csv` within the project structure for performance 
+    tracking.
+  - The latest model version is also downloaded and stored in the `latest_version` directory, ensuring that the most current model is always used for predictions. This script 
+    ensures efficient credential management, model retrieval, and clean-up of storage, maintaining an organized and updated model deployment environment.
 
-- **model_performance_check.py**:  This script assesses the effectiveness of a machine learning model by retrieving key metrics such as precision, recall, and F1 score from a prior inference task. The results are obtained through XCom from the task labeled 'inference'. Based on these metrics, the script decides whether the model requires retraining—triggering retraining if recall is below 0.9 and F1 score is under 0.8. It then **prints** these metrics to the console for immediate observation and **pushes** the retraining decision back to XCom for use in subsequent tasks, ensuring that the workflow dynamically adapts to maintain high model performance.
+- **model_performance_check.py**:
+  - This script assesses the effectiveness of a machine learning model by retrieving key metrics such as precision, recall, and F1 score from a prior inference task.
+  - The results are obtained through XCom from the task labeled 'inference'. Based on these metrics, the script decides whether the model requires retraining.
+    - It triggers retraining if **recall is below 0.9** and **F1 score is under 0.8.**
+  - It then prints these metrics to the console for immediate observation and **pushes** the retraining decision back to XCom for use in subsequent tasks, ensuring that the 
+    workflow dynamically adapts to maintain high model performance.
 
 # Model Retraining
 
