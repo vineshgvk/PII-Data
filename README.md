@@ -258,7 +258,7 @@ We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (re
 
 We also established alerts for anomaly detection. If anomalies, like unexpected spikes or deviations, are detected in our data, immediate alerts are triggered and sent out.
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Screenshot_20240424-033317.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/email%20alerts.png)
 
 # Model Performance Evaluation:
 
