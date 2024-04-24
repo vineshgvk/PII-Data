@@ -105,6 +105,7 @@ The User Installation Steps are as follows:
  - ${AIRFLOW_PROJ_DIR:-.}/config: #locate the config file from airflow (eg:/home/vineshgvk/airflow/config)
   ```
 5. In the cloned directory, navigate to the config directory under PII-Data and place your key.json file from the GCP service account for handling pulling the data from GCP.
+
 6. Run the Docker composer.
    ```
    docker compose up
@@ -115,6 +116,7 @@ The User Installation Steps are as follows:
    password: airflow2
    ```
 8. Run the DAG by clicking on the play button on the right side of the window
+
 9. Stop docker containers (hit Ctrl + C in the terminal)
     
 # Tools Used for MLOps
