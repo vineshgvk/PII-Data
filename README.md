@@ -330,13 +330,13 @@ We use ML flow to manage our models across different stages—Archiving, Staging
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/MLFLOW.png)
 
-Pictured: Existing Logs on MLFlow for all the Experimental Models
+Pictured: MLflow Experiments Overview
 
 # Logging and Monitoring
 We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics.
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ELK.png)
-Pictured: ELK Logs
+Pictured: Log Management with ELK - Analyzing and Visualizing Logs
 
 # Model Analysis
 
