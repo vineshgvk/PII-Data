@@ -382,7 +382,7 @@ Pictured: Confusion matrix for labels
 
 We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/pii-streamlit.jpg)
+![image]()
 
 # Cost Analysis
 
