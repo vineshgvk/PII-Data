@@ -307,7 +307,7 @@ To address this, our Model Retraining process employs a set of scripts that cont
 
 ## Hyper Parameter Tuning
 
-This model has three hyper-parameters namely *Learning Rate, Number of Training Epochs, Per Device Train Batch Size*.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
+This model has three hyper-parameters namely **Learning Rate, Number of Training Epochs, Per Device Train Batch Size**.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
 
 Additionally we used also TensorBoard is used to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
 
@@ -338,11 +338,22 @@ We utlized Tensorboard to create Visualizations of the results obtained for Mode
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
 Pictured: F1 Score and Precision
 
+F1 Score: The F1 Score graph shows a rapid increase at the beginning and then plateaus close to the value of 1, indicating that the model has a good balance between precision and recall.
+Precision: The Precision graph also shows an increase, leveling off near the value of 1. High precision indicates that most of the instances the model predicts as positive are indeed positive.
+
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/gg.png)
 Pictured: Recall
 
+The recall metric of the model quickly increases and then plateaus near the maximum value. This suggests the model is consistently identifying most of the relevant cases. The flat line at the end indicates stable performance over time.
+
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/training%20loss.png)
 Pictured: train_loss
+
+The graph presents a machine learning model's training loss over time. Key observations include:
+
+Sharp Initial Decline: There is a steep drop in loss at the beginning, which suggests the model quickly improved its predictions early in the training.
+Stabilization of Loss: The loss then decreases at a slower rate and starts to plateau, indicating the model is achieving a steady state where it is learning less from each additional training batch.
+End of Training Behavior: Towards the end, the curve flattens significantly, suggesting minimal gains from further training, which could be an indicator to stop training to save computational resources and avoid overfitting.
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Confusion_Matrix.png)
 Pictured: Confusion matrix for labels 
