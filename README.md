@@ -18,7 +18,7 @@ In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking 
 
 ## Potential AI Solution :
 
-In this project, we work on identifying Personally Identifiable Information (PII) in Student Essays educational institutions. The goal is to develop effective methods and tools that can accurately detect and manage PII, ensuring compliance with privacy regulations and safeguarding sensitive information within academic contexts.
+In this project, we work on identifying Personally Identifiable Information (PII) from textual data. The goal is to develop effective methods and tools that can accurately detect and manage PII, ensuring compliance with privacy regulations and safeguarding sensitive information within academic contexts.
 
 Detecting PII within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
