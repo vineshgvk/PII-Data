@@ -18,7 +18,7 @@ In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking 
 
 ## Potential AI Solution:
 
-In this project, we work on identifying Personally Identifiable Information (PII) in textual data, especially when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
+In this project, we work with a dataset containing student essays gathered from an online course. We work on identifying Personally Identifiable Information (PII) in textual data, when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
 With the exponential growth of text data and the complexities of PII detection, there is an urgent need for sophisticated and automated methods. Hence, Machine learning emerges as a pivotal solution, offering the accuracy and automation required to adeptly detect and secure PII within vast textual databases.
 
