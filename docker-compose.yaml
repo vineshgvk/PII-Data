@@ -49,8 +49,8 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.8.3}
-  # build: .
+  # image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.8.3}
+  build: .
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
@@ -66,9 +66,9 @@ x-airflow-common:
     AIRFLOW__SMTP__SMTP_PORT: 587
     AIRFLOW__SMTP__SMTP_STARTTLS: 'True'  # or 'False' if your SMTP server does not support STARTTLS
     AIRFLOW__SMTP__SMTP_SSL: 'False'  # or 'True' if your SMTP server requires SSL/TLS
-    AIRFLOW__SMTP__SMTP_USER: rayapudisaiakhil@gmail.com
-    AIRFLOW__SMTP__SMTP_PASSWORD:           # enter your password here
-    AIRFLOW__SMTP__SMTP_MAIL_FROM: rayapudisaiakhil@gmail.com
+    AIRFLOW__SMTP__SMTP_USER: gvk7663@gmail.com
+    AIRFLOW__SMTP__SMTP_PASSWORD: unzjyblttppkurui          # enter your password here
+    AIRFLOW__SMTP__SMTP_MAIL_FROM: gvk7663@gmail.com
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
     # See https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/logging-monitoring/check-health.html#scheduler-health-check-server
@@ -76,7 +76,7 @@ x-airflow-common:
     AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
     # WARNING: Use _PIP_ADDITIONAL_REQUIREMENTS option ONLY for a quick checks
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- scikit-learn numpy pandas transformers google-cloud-storage datasets sentencepiece}
+    # _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- scikit-learn numpy pandas transformers google-cloud-storage datasets sentencepiece torch streamlit matplotlib seaborn mlflow tensorboard datetime}
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
@@ -285,6 +285,83 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:5601"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.12.0
+    volumes:
+      - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf  # Your Logstash configuration
+      - ./logs:/opt/airflow/logs  # This volume matches Airflow's log directory
+    ports:
+      - "5044:5044"  # If needed for other inputs
+    restart: always
+
+  metricbeat:
+    image: docker.elastic.co/beats/metricbeat:8.12.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    volumes:
+      - ./metricbeat:/usr/share/metricbeat.yml
+    networks:
+      - es-network
+    depends_on:
+      - elasticsearch
+  
+#   streamlit:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.streamlit
+#     ports:
+#       - "8501:8501"
+#     volumes:
+#       - ./serve.py
+# version: '3.8'
+  # streamlit:
+  #   build:
+  #     context: "C:/Users/siddh/OneDrive - Northeastern University/Desktop/NEU Essentials/03 Spring 24/00 IE7374 ML Ops/MLFlow/pii-new/PII-Data"
+  #     dockerfile: Dockerfile.streamlit
+  #   volumes:
+  #     - "C:/Users/siddh/OneDrive - Northeastern University/Desktop/NEU Essentials/03 Spring 24/00 IE7374 ML Ops/MLFlow/pii-new/PII-Data/dags/src:/app"
+  #   ports:
+  #     - "8501:8501"
 
 volumes:
   postgres-db-volume:
+  es-data:
+  metricbeat-data01:
+networks:
+  es-network:
+    driver: bridge
