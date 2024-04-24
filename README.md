@@ -173,7 +173,7 @@ One must set up a service account to use Google Cloud Platform services using be
 
 ## Pipeline Optimization
 
-![image](images/airflow_gantt_chart.png) - Replace with the image of updated pipeline
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Gantt%20chart.png)
 
 **Gantt Chart**: It is a popular project management tool used to visualize and track the progress of tasks or activities over time. It provides a graphical representation of a pipeline's schedule, showing when each task is planned to start and finish.
 
@@ -182,7 +182,7 @@ One must set up a service account to use Google Cloud Platform services using be
 # End-to-End Pipeline for Model Deployment
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20PIPELINE%20OVERVIEW%20(1).png)
-
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20Model.png)
 Our Model Pipeline has four major components
 1.Data Download
 2.Data Cleaning and Preprocessing
@@ -294,7 +294,7 @@ Pictured: The image shows logs in ML flow for various experimental models, inclu
 # Logging and Monitoring
 We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics
 
-## Model Analysis
+# Model Analysis
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tENSORBOARD%201.png)
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
