@@ -122,13 +122,12 @@ The User Installation Steps are as follows:
 - GitHub Actions
 - Docker
 - Airflow
-- TensorFlow Data Validation (TFDV) (Need to Confirm)
 - Data Version Control (DVC)
 - Google Cloud Storage (GCS)
-- ML flow (Model Experiment Tracking)
-- ELK (Logging and Monitoring)
-- Tensorboard (Model Analysis)
-- StreamLit (Model Serving)
+- ML flow
+- ELK
+- Tensorboard
+- StreamLit
 
 ## GitHub Actions
 
@@ -139,10 +138,6 @@ When a new commit is pushed, the workflow triggers a build process `pytest` and 
 ## Docker and Airflow
 
 The `docker-compose.yaml` file contains the code neccessary to run Airflow. Through the use of Docker and containerization, we are able to ship our datapipeline with the required dependencies installed. This makes it platform indepedent, whether it is windows, mac or linux, our data pipeline should run smooth.
-
-## TensorFlow Data Validation (TFDV)
-
-TFDV stands for TensorFlow Data Validation. TFDV provides functionalities for data analysis, schema inference, and data validation, allowing users to ensure that their data meets the expectations of their ML models. We used TFDV to know the statsgen and schema of our incoming data.
 
 ## Data Version Control (DVC)
 
