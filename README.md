@@ -360,7 +360,7 @@ There is a steep drop in loss at the beginning, which suggests the model quickly
 Stabilization of Loss: The loss then decreases at a slower rate and starts to plateau, indicating the model is achieving a steady state where it is learning less from each additional training batch.
 End of Training Behavior: Towards the end, the curve flattens significantly, suggesting minimal gains from further training, which could be an indicator to stop training to save computational resources and avoid overfitting.
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/training%20loss.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/training%20loss.png) 
 Pictured: train_loss
 
 **Confusion Matrix Observations:**
