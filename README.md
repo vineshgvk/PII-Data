@@ -18,7 +18,9 @@ In 2022 alone, the education sector saw a 44% increase in cyberattacks, marking 
 
 ## Potential AI Solution :
 
-In this project, we work on identifying Personally Identifiable Information (PII) in textual data , especially when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
+In this project, we work on identifying Personally Identifiable Information (PII) in Student Essays educational institutions. The goal is to develop effective methods and tools that can accurately detect and manage PII, ensuring compliance with privacy regulations and safeguarding sensitive information within academic contexts.
+
+Detecting PII within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
 With the exponential growth of text data and the complexities of PII detection, there is an urgent need for sophisticated and automated methods. Hence, Machine learning emerges as a pivotal solution, offering the accuracy and automation required to adeptly detect and secure PII within vast textual databases.
 
@@ -27,6 +29,7 @@ We will explore key exploratory data analysis techniques and adopt a hybrid appr
 Our goals comprise data pipeline preparation, ML Model Training, and ML Model updates to capture the evolving trends. We plan to assess data and concept drifts for sustained model efficacy and demonstrate the CI/CD process, ensuring streamlined model updates and optimizations.
 
 We are moving towards a future where every action and interaction of ours will be a data point, fundamentally shaping how we navigate and understand the world. Thus, our PII detection project marks a genuine leap forward in the realm of data privacy and security. Our future focus includes real-time monitoring, privacy-preserving techniques, and compliance features to swiftly respond to breaches and meet global regulations. Our core mission is to promote trust and ethical data practices in today's data-driven landscape, ensuring a safer and better world for everyone!
+
 
 # Dataset Information
 
