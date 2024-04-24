@@ -183,20 +183,23 @@ One must set up a service account to use Google Cloud Platform services using be
 
 # End-to-End Pipeline for Model Deployment
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20Model.png)
-
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20PIPELINE%20OVERVIEW%20(1).png)
+Pictured above: Machine Learning Pipeline - Data to Deployment Flowchart
 
 Our Model Pipeline has four major components
-### 1.Data Download
-### 2.Data Cleaning and Preprocessing
-### 3.Model Performance Evaluation
-### 4.Model Retraining
+#### 1.Data Download
+#### 2.Data Cleaning and Preprocessing
+#### 3.Model Performance Evaluation
+#### 4.Model Retraining
 
-Our Pipeline begins with data acquisition where we fetch Data from the Source and perform Data Slicing.After the Data is downloaded, in the next step, we clean and Preprocess the Data. 
+Our Pipeline begins with data acquisition where we fetch Data from the Source and perform Data Slicing. After the Data is downloaded, in the next step, we clean and Preprocess the Data. 
 Next, the preprocessed data is analyzed in inference.py to generate performance metrics. These Performance Metrics are assessed in Model_performance_check.py.If these metrics are above a certain threshold, the model moves directly to Serve.py for deployment.However, if the metrics are below the threshold, the model undergoes retraining.After retraining, Model_versioning.py compares different model versions, selects the best one, and uploads it to Google Cloud Storage. Finally, the chosen model version is deployed using Serve.py.
 
 We use Apache Airflow to orchestrate our data pipeline, treating each module as a distinct task within our primary DAG (Directed Acyclic Graph). This setup allows us to efficiently manage the flow from data acquisition to model deployment, ensuring each step is executed in the correct order and monitored for performance and success.
+
+
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20Model.png)
+Pictured above: Machine Learning Model Training and Deployment Workflow in Apache Airflow
 
 # Data Download
 In this phase, the dataset is fetched and extracted into the designated data folder using the following modules:
