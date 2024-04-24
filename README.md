@@ -369,7 +369,7 @@ The diagonal values, which represent correct classifications, have significantly
 Categories like B-EMAIL, B-ID_NUM, and B-URL_PERSONAL show high numbers of correct predictions (514, 116, and 418, respectively), indicating the model's strength in these areas.
 The macro avg and weighted avg for precision, recall, and f1-score are all 0.99 or 1.00, confirming the model's strong performance across all classes.
 
-![image]()
+![image](images/ConfusionMatrix-DistilBERT.png)
 Pictured: Confusion matrix for labels 
 
 
