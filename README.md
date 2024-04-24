@@ -304,6 +304,9 @@ We utlized Tensorboard to create Visualizations of the results obtained for Mode
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/training%20loss.png)
 
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/Confusion_Matrix.png)
+Picture above: Confusion matrix for labels 
+
 # Deployment Pipeline
 
 We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
