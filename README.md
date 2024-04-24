@@ -298,8 +298,6 @@ We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and m
 
 We utlized Tensorboard to create Visualizations of the results obtained for Model Analysis such as model metrics and parameters.
 
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tENSORBOARD%201.png)
-
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/gg.png)
