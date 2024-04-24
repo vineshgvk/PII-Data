@@ -297,8 +297,11 @@ We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and m
 # Model Analysis
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tENSORBOARD%201.png)
+
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
-![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb3.png)
+
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/T3%20EDITED.png)
+
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb4.png)
 
 # Deployment Pipeline
