@@ -183,7 +183,7 @@ One must set up a service account to use Google Cloud Platform services using be
 
 ## End-to-End Pipeline for Model Deployment
 
-![image](images/ML%20PIPELINE%20OVERVIEW.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20PIPELINE%20OVERVIEW%20(1).png)
 
 Our Model Pipeline has three major components
 1.Data Download
