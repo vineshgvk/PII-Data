@@ -235,9 +235,9 @@ The `Statsgen.ipynb` notebook generates the following outputs:
 - A schema that describes the structure of the data.
 This information can be used to improve the quality of the data and train machine learning models more effectively.
 
-![image](images/statsgen.png) ###change images
+![image](images/statsgen.png) 
 
-![image](images/image.png)  ###change images
+![image](images/image.png)
 
 
 
@@ -281,6 +281,8 @@ Additionally we used also TensorBoard is used to visualize training metrics like
 
 For monitoring our experimental machine learning pipeline, we employ MLflow, Docker, and Python. We selected three key metrics to determine the optimal model parameters from the plot provided:
 
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/MLFLOW%20EXPIREMNET%20TRACKING.png)
+
 Pictured: Parallel Plot for visualizing the parameter-metrics combinations for our model
 
 # Staging, Production and Archived models (MLFLOW)
@@ -289,39 +291,18 @@ We use ML flow to manage our models across different stages—Archiving, Staging
 
 Pictured: The image shows logs in ML flow for various experimental models, including details on parameters, metrics, and versions.
 
-# Model Pipeline
-
-## Train the model
-
-The model is trained using  function. It takes x inputs and gives y outputs. The inputs are . The outputs are .
-
-Save the model
-
-The model is saved locally using save_and_upload_model function and uploaded to GCS.
+# Logging and Monitoring
+We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics
 
 ## Model Analysis
 
-The model is analysed by - what function did we use to analyze the model?
-
-Model Efficacy Report and Visuals
-
-The plot above shows the silhouette score plots for different number of clusters. The closer it is to +1, the better it is - Add Plot
 
 
-The model has the following metrics: Silhouette Score, Calinski Harabasz score and Davies Bouldin score. Below are the visuals of clusters formed after PCA and the distribution of customers into clusters.
-
-Add Plots
 
 # Deployment Pipeline
 
 We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
 
-# Model Insights
-
-Insert Visualizations of our Model Insights
-
-# Logging and Monitoring
-We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics
 
 # Cost Analysis:
 
