@@ -16,7 +16,7 @@ These platforms must prioritize the security of Personally Identifiable Informat
 
 In 2022 , the education sector saw a 44% increase in cyberattacks, marking it as the most targeted industry for such incidents. This dramatic rise illustrates the urgent need for enhanced security measures.
 
-## Solution:
+## Potential AI Solution:
 
 In this project, we work on identifying Personally Identifiable Information (PII) in textual data, especially when it’s embedded in the extensive personal details often found in Student Essays. Despite the critical importance of protecting PII, detecting it within vast amounts of textual data poses a significant challenge. Manual inspection is inefficient, impractical, and laborious. Keyword searches often overlook PII's complexity and variability.
 
