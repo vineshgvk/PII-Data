@@ -283,7 +283,7 @@ For monitoring our experimental machine learning pipeline, we employ MLflow, Doc
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/MLFLOW%20EXPIREMNET%20TRACKING.png)
 
-Pictured: Parallel Plot for visualizing the parameter-metrics combinations for our model
+Pictured: Plot for visualizing the parameter-metrics combinations for our model
 
 # Staging, Production and Archived models (MLFLOW)
 
@@ -296,8 +296,10 @@ We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and m
 
 ## Model Analysis
 
-
-
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tENSORBOARD%201.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb3.png)
+![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb4.png)
 
 # Deployment Pipeline
 
