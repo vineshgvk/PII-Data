@@ -77,13 +77,13 @@ This project requires Python >= 3.8. Please make sure that you have the correct 
 The User Installation Steps are as follows:
 
 1. Clone the git repository onto your local machine:
-   ```
-   git clone https://github.com/rayapudisaiakhil/PII-Data
-   ```
+  ```
+  git clone https://github.com/rayapudisaiakhil/PII-Data
+  ```
 2. Check if python version >= 3.8 using this command:
-   ```
-   python --version
-   ```
+  ```
+  python --version
+  ```
 3. Check if you have enough memory
   ```docker
   docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getconf _PHYS_PAGES) * $(getconf PAGE_SIZE))))'
