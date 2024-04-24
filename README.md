@@ -384,7 +384,7 @@ Pictured: Confusion matrix for labels
 
 We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
 
-![image]()
+![image](images/Streamlit.png)
 
 # Cost Analysis
 
