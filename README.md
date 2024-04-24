@@ -202,7 +202,7 @@ In this phase, the dataset is fetched and extracted into the designated data fol
 
 - **data_slicing_batches_task.py**: This script automates downloading and slicing the train.json dataset from a Google Cloud bucket into the dags/processed/Fetched directory, handling file management and data processing efficiently.
 
-## Data Cleaning and Preprocessing
+# Data Cleaning and Preprocessing
 Data quality is extremely important in machine learning for reliable results. Hence, we conduct exploratory data analysis to ensure high-quality data, which is essential for effective model training and decision-making.
 
 The components involved in this process are:
