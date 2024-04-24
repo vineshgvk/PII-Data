@@ -181,11 +181,11 @@ One must set up a service account to use Google Cloud Platform services using be
 
 * We have minimized the execution time by running `anomaly_detect.py` in parallel with `missing_values_removal.py` after observing the initial Gantt chart.
 
-## End-to-End Pipeline for Model Deployment
+# End-to-End Pipeline for Model Deployment
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/ML%20PIPELINE%20OVERVIEW%20(1).png)
 
-Our Model Pipeline has three major components
+Our Model Pipeline has four major components
 1.Data Download
 2.Data Cleaning and Preprocessing
 3.Model Performance Evaluation
@@ -196,24 +196,19 @@ Next, the preprocessed data is analyzed in inference.py to generate performance 
 
 We use Apache Airflow to orchestrate our data pipeline, treating each module as a distinct task within our primary DAG (Directed Acyclic Graph). This setup allows us to efficiently manage the flow from data acquisition to model deployment, ensuring each step is executed in the correct order and monitored for performance and success.
 
-## 1.Data Download
-## Data Preprocessing
-![Data Pipeline Components](https://github.com/rayapudisaiakhil/PII-Data/raw/main/images/Data%20Pipeline.png)
-
+# Data Download
 ## 1. Downloading Data
-In the initial phase, the dataset is fetched and extracted into the designated data folder using the following modules:
+In this phase, the dataset is fetched and extracted into the designated data folder using the following modules:
 
 - **data_slicing_batches_task.py**: This script automates downloading and slicing the train.json dataset from a Google Cloud bucket into the dags/processed/Fetched directory, handling file management and data processing efficiently.
 
-## 2. Anomaly Detection
-Prior to moving to inference data and model training, it is very important to detect any anomalies present in the data. The script `anomalyDetect.py` performs anomaly detection and verifies data integrity and quality in `train.json`.
-
-- **anomalyDetect.py**: Specifically, this script performs several key checks like text length validation, sample size check, data type validation, token length check, trailing whitespace check, and label validation on the `train.json` file loaded from GCP bucket.Alerts will be sent when Anomaly’s are detected.
-
-## 3. Cleaning Data
+## Data Cleaning and Preprocessing
 Data quality is extremely important in machine learning for reliable results. Hence, we conduct exploratory data analysis to ensure high-quality data, which is essential for effective model training and decision-making.
 
 The components involved in this process are:
+
+- **anomalyDetect.py**: Prior to moving to inference data and model training, it is very important to detect any anomalies present in the data. The script `anomalyDetect.py` performs anomaly detection and verifies data integrity and quality in `train.json`. 
+Specifically, this script performs several key checks like text length validation, sample size check, data type validation, token length check, trailing whitespace check, and label validation on the `train.json` file loaded from GCP bucket.Alerts will be sent when Anomaly’s are detected.
 
 - **missing_values.py**: This script loads a JSON file (train.json) containing data, Removes missing values from `train.json` missing checks for remaining null values, and then pickles the cleaned DataFrame into the file `missing_values.pkl`.
 Post that it saves into the`dags/processed/` folder.
@@ -228,7 +223,7 @@ Post that it saves into the`dags/processed/` folder.
 
 Each module within the pipeline retrieves data from an input pickle path, performs processing operations, and saves the processed data to an output pickle path. The seamless integration of these modules within Airflow facilitates a structured and optimized data processing workflow.
 
-## 4. Stats Gen
+## Stats Gen
 It is very important to look at data and understand it from the feature level. This helps us avoid any potential discrepancies and biases in our model results. This is where Stats Gen (Statistical Data Generation) comes into picture.
 
 Stats Gen is used to understand data distributions, detect patterns, and make informed decisions about model selection and evaluation. These statistical insights guide feature engineering and help assess model performance, leading to improved predictive accuracy and generalization capabilities.
@@ -248,7 +243,7 @@ This information can be used to improve the quality of the data and train machin
 
 
 
-## 5. Email Alerts
+## Email Alerts
 
 We set up email alerts by configuring SMTP settings in `docker-compose.yaml` (refer to step 4 in user installation above) to receive instant alerts as email notifications upon task or DAG (Directed Acyclic Graph) failures and successes. These email alerts are crucial for monitoring and promptly addressing issues in data pipelines, ensuring data integrity, and minimizing downtime.
 
@@ -256,38 +251,33 @@ We also established alerts for anomaly detection. If anomalies, like unexpected 
 
 <hr>
 
-# Machine Learning Modeling Pipeline
-
 We established our machine learning pipeline within a local environment, seamlessly integrating it with Airflow, which is Dockerized for efficient management and deployment. 
 Our model is stored in Google Cloud Storage (GCS).We leverage Docker images that we created and uploaded to the Artifact Registry. This setup enables streamlined training and deployment processes for our model, ensuring smooth execution and scalability.
 
-# Machine Learning Pipeline Components 
+# Model Performance Evaluation:
+Ensuring the continuous effectiveness of machine learning models requires diligent monitoring and evaluation.
+To address this, our Model Performance Evaluation process involves a series of scripts that assess, validate, and adjust model performance over time.
 
-## 1. Trainer
+- **inference.py**: This script plays a key role in the continuous model evaluation cycle by fetching the latest model version from Google Cloud Storage and performing predictions on test data to compute essential performance metrics such as precision, recall, and F1 scores. The evaluation results, including the evaluation timestamp, are logged in a CSV file located in the `data/model_metrics.csv` within the project structure for performance tracking. The latest model version is also downloaded and stored in the `latest_version` directory, ensuring that the most current model is always used for predictions. This script ensures efficient credential management, model retrieval, and clean-up of storage, maintaining an organized and updated model deployment environment.
 
-Trainer Components:
+-**model_performance_check.py**:  This script assesses the effectiveness of a machine learning model by retrieving key metrics such as precision, recall, and F1 score from a prior inference task. The results are obtained through XCom from the task labeled 'inference'. Based on these metrics, the script decides whether the model requires retraining—triggering retraining if recall is below 0.9 and F1 score is under 0.8. It then **prints** these metrics to the console for immediate observation and **pushes** the retraining decision back to XCom for use in subsequent tasks, ensuring that the workflow dynamically adapts to maintain high model performance.
 
-Dockerfile: Utilized to execute the training job.
+# Model Retraining
+- **Train.py**: This script is used for Model Training. It designed to train a token classification model using a DistilBERT-based architecture. It fine-tunes the model on labeled data, logs training metrics to TensorBoard, and saves the best-performing model based on F1 score. The training parameters are tuned using a grid search approach, and the script also includes functionality for evaluating the trained model on test data and logging the evaluation metrics.
 
-train.py: This Python script constructs the model using training data sourced from Google Cloud and subsequently saves it to Local Environment.
+- **predict.py**: This script manages the tokenization and prediction process using a pretrained model, calculating precision, recall, and F1 scores for each label. It logs these metrics to MLflow, which tracks and saves the run data for analysis. Additionally, it generates a confusion matrix that is saved for visual analysis. All processed data and results, including tokenized datasets and evaluation metrics, are systematically stored under the `dags/processed/` directory, making them readily accessible for detailed analysis and model validation.
 
-file.py: Contains the X algorithm, functions for outlier removal, and hyperparameter tuning processes.
+- **Model_versioning.py**: This script compares the performance metrics of the latest model version with the best model obtained during training .It assesses the model's performance on preprocessed test data by calculating precision, recall, and F1 score. This comparison helps determine whether retraining the model is necessary based on the observed improvements or deteriorations in model performance.
 
-## 2. Serve
+- **Serve.py**:  This script is used for model serving. It evaluates performance on test data, masking tokens in text based on model predictions, and and deploys a Streamlit app for interactive text masking. It also includes text preprocessing capabilities and logs execution time metrics for serving purposes.
 
-The components are designed to deploy the ML model on where are we deploying following its training:
+- **upload_model_gcp.py**:  This script automates the process of uploading a machine learning model to GCP storage,managing versioning based on existing versions, and logging upload progress.
 
-predict.py: 
+## Hyper Parameter Tuning
 
-Dockerfile: Employed to host the serving module, facilitating the deployment of the model on Vertex AI.
+This model has three hyper-parameters namely Learning Rate, Number of Training Epochs, Per Device Train Batch Size.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
 
-## 3. Model Pipeline
-
-build.py: This script is responsible for initiating a training job by utilizing the Docker images prepared by the trainer component. After training, it manages the deployment of the trained model to an endpoint on Vertex AI, where the model will be served.
-
-## 4. Inference
-
-inference.py: This script is designed to send JSON input data to the model in order to obtain predictions. It handles the communication between the input data and the deployed model, facilitating the inference process.
+Additionally we used also TensorBoard is used to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
 
 # Experimental tracking pipeline (MLFLOW)
 
@@ -311,12 +301,6 @@ Save the model
 
 The model is saved locally using save_and_upload_model function and uploaded to GCS.
 
-## Hyper Parameter Tuning
-
-This model has three hyper-parameters namely Learning Rate, Number of Training Epochs, Per Device Train Batch Size.We used ML flow to track different training runs by logging hyper parameters and performance metrics such as F1 score, precision, and recall.
-
-Additionally we used also TensorBoard is used to visualize training metrics like loss, F1 score, precision, and recall in real-time.This visualization aids in optimizing the training process and diagnosing any issues quickly.
-
 ## Model Analysis
 
 The model is analysed by - what function did we use to analyze the model?
@@ -332,17 +316,14 @@ Add Plots
 
 # Deployment Pipeline
 
-We've deployed the ML Model on a Vertex-AI Endpoint, utilizing StreamLit to handle requests. We've set up Model and Traffic Monitoring using X, which is linked to a Looker Dashboard to assess latency related to server load. Additionally, we use X to detect any data drifts.
+We've deployed the ML Model on Local Environment, utilizing StreamLit to handle requests.
 
 # Model Insights
 
 Insert Visualizations of our Model Insights
 
-# Monitoring
-
-Are we creating a Monitoring Dashboard? We've set up a Monitoring Dashboard to track the extend of data or concept drift ( if any exists ). We use ELK to log the feature input values, the predicted cluster, and timestamps(what do we log). We also record key metrics such as the (what are our key metrics )latency between predictions.
-
-You can view the monitoring dashboard on Looker.( Add Link to the Dashboard )
+# Logging and Monitoring
+We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and monitoring purposes. This solution provided centralized log management, real-time monitoring capabilities, and scalability, allowing for efficient analysis of system logs and performance metrics
 
 # Cost Analysis:
 
@@ -350,21 +331,20 @@ The following is the breakdown of costs associated with the Machine Learning pip
 
 Initial Cost Analysis
 
-Model Training using Vertex AI: $
+Model Training : $15
 
-Deploying Model: $
+Deploying Model: $0 (Since we are deploying locally,there are no direct storage costs)
 
-Total Training and Deployment Cost: $
 
 Serving Analysis
 
-Daily Online Prediction for Model Serving: $
+Daily Online Prediction for Model Serving: $4
 
-Weekly serving cost: $
+Weekly serving cost: $30
 
-Monthly serving cost: $
+Monthly serving cost: $145
 
-Yearly serving cost: $
+Yearly serving cost: $1825
 
 # Contributing / Development Guide
 
