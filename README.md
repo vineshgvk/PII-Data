@@ -298,6 +298,8 @@ We implemented the ELK (Elasticsearch, Logstash, Kibana) stack for logging and m
 
 # Model Analysis
 
+We utlized Tensorboard to create Visualizations of the results obtained for Model Analysis
+
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tENSORBOARD%201.png)
 
 ![image](https://github.com/rayapudisaiakhil/PII-Data/blob/main/images/tb2.png)
@@ -373,18 +375,6 @@ If you prefer to run tests for a specific module, specify the path to the test f
 ```
 This approach allows you to isolate and debug any failures in specific areas of your project without running the entire suite of tests.
 
-## Testing @Lahari B
-
-Prior to uploading code to GitHub, execute the commands below on your local machine to verify a successful build.
-
-For checking formatting issues and potential vulnerabilities in the code, use:
-```
-pytest --pylint
-```
-To execute the test suites associated with your modules, enter:
-```
-pytest
-```
 ## Airflow Dags
 
 Once your code for data pipeline modules is built successfully, copy them to dags/src/. Create your Python Operator in airflow.py within dags/src/. Set pipeline dependencies using the >> operator.
